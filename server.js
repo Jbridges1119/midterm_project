@@ -7,7 +7,7 @@ const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
-
+const cookieSession = require('cookie-session');
 // PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
@@ -21,7 +21,13 @@ app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieSession({
+  name: 'session',
+  keys: ["key1", "key2", "key3"],
 
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
 app.use(
   "/styles",
   sassMiddleware({
@@ -47,6 +53,12 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
+
+
+app.get("/login/:id", (req, res) => {
+  req.session.user_id = req.params.id
+  res.redirect('/stories')
+});
 
 app.get("/", (req, res) => {
   res.render("index");
