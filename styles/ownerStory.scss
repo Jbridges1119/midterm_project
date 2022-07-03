@@ -21,7 +21,7 @@ body {
     align-items: center;
     font-size: 2.2rem;
     margin-top: 2rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
     width: 1062.95px;
     transition-duration: .2s;
     transition-timing-function: ease-in-out;
@@ -34,10 +34,7 @@ body {
 
     }
 
-    .border{
-      border-bottom: solid;
-      background-color: black;
-    }
+
     p.title {
       font-size: 3.5rem;
       font-weight: 700;
@@ -88,6 +85,7 @@ body {
           }
 
         }
+
         i.fa-arrow-down {
           transition-duration: .2s;
           transition-timing-function: ease-in-out;
@@ -105,6 +103,7 @@ body {
             transform: translateY(5px);
           }
         }
+
         i.report {
           color: darkred;
           transition-duration: .2s;
@@ -127,10 +126,13 @@ body {
     }
   }
 
+  .border {
+    border-top: 1px solid;
+    margin-inline: 2rem;
 
+  }
 
   .contribution {
-    // border-bottom: 3px solid ;
     box-shadow: 0 6px 8px rgba(102, 95, 82, 0.2);
     outline: none;
     border-radius: 4px;
@@ -181,12 +183,13 @@ body {
         box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
         padding: 8px;
         margin-bottom: 5px;
-        width:200px;
+        width: 200px;
         background-color: #4d693f;
         color: #fff;
         transition-duration: .2s;
         transition-timing-function: ease-in-out;
         margin-inline: .75rem;
+
         &:hover {
           transition-duration: .2s;
           transition-timing-function: ease-in-out;
@@ -202,6 +205,7 @@ body {
           transform: translateY(0.05em);
         }
       }
+
       .icons {
         display: flex;
         justify-content: space-between;
@@ -243,6 +247,7 @@ body {
             transform: translateY(5px);
           }
         }
+
         span {
           color: $textColor;
           font-weight: 700;
@@ -257,7 +262,7 @@ body {
         }
 
         i.report {
-          margin-right:42.5px;
+          margin-right: 42.5px;
           color: darkred;
           transition-duration: .2s;
           transition-timing-function: ease-in-out;
@@ -279,10 +284,8 @@ body {
     }
   }
 
-
-
-div.bottom{
-  margin:30px;
-}
+  div.bottom {
+    margin: 30px;
+  }
 
 }

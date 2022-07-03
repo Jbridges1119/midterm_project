@@ -1,55 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Owners Story</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
-      type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
-      integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
-      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <!--  CSS  -->
-    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/navbar.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/ownerStory.css" type="text/css" />
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owners Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/4.0.2/timeago.min.js"
+    integrity="sha512-SVDh1zH5N9ChofSlNAK43lcNS7lWze6DTVx1JCXH1Tmno+0/1jMpdbR8YDgDUfcUrPp1xyE53G42GFrcM0CMVg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script type="text/javascript" src="/scripts/app.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-  </head>
+  <!--  CSS  -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/navbar.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/ownerStory.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+</head>
+
 <body>
-    <!--  Nav Bar  -->
-    <%- include('partials/_header') %>
+  <!--  Nav Bar  -->
+  <%- include('partials/_header') %>
     <main>
       <div class="myStory">
         <p class="title">*Story Title*</p>
-        <p>*Hopefully, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage. Tolkien is so good at drawing us out of the mundane and trivial parts of our lives to see that we are living in great stories. After escaping briefly to Middle Earth, I return to our world newly awake to its threads of myth and majesty.*</p>
+        <p>*Hopefully, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage.
+          Tolkien is so good at drawing us out of the mundane and trivial parts of our lives to see that we are living
+          in great stories. After escaping briefly to Middle Earth, I return to our world newly awake to its threads of
+          myth and majesty.*</p>
         <footer>
           <!-- <p>${timeago.format(data.created_at)}</p> -->
           <div class="icons">
             <i class="fa-solid fa-flag report"></i>
             <div class="rating">
-            <i class="fa-solid fa-arrow-up upvote"></i><span> 0</span>
-            <i class="fa-solid fa-arrow-down"></i>
+              <i class="fa-solid fa-arrow-up upvote"></i><span> 0</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </div>
           </div>
-          </div>
-          </footer>
+        </footer>
       </div>
-      <div class="border">000</div>
+      <div class="border"></div>
       <div class="contribution">
-        <p>*Hopefully, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage. Tolkien is so good at drawing us out of the mundane and trivial parts of our lives to see that we are living in great stories. After escaping briefly to Middle Earth, I return to our world newly awake to its threads of myth and majesty.*</p>
+        <p>*Hopefully, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage.
+          Tolkien is so good at drawing us out of the mundane and trivial parts of our lives to see that we are living
+          in great stories. After escaping briefly to Middle Earth, I return to our world newly awake to its threads of
+          myth and majesty.*</p>
         <footer>
           <!-- <p>${timeago.format(data.created_at)}</p> -->
           <div class="icons">
@@ -59,14 +67,17 @@
               <button class="end" type="submit">The end</button>
             </div>
             <div class="rating">
-            <i class="fa-solid fa-arrow-up upvote"></i><span> 0</span>
-            <i class="fa-solid fa-arrow-down"></i>
+              <i class="fa-solid fa-arrow-up upvote"></i><span> 0</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </div>
           </div>
-          </div>
-          </footer>
+        </footer>
       </div>
       <div class="contribution">
-        <p>*Hopefully, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage. Tolkien is so good at drawing us out of the mundane and trivial parts of our lives to see that we are living in great stories. After escaping briefly to Middle Earth, I return to our world newly awake to its threads of myth and majesty.*</p>
+        <p>*Hopefully, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage.
+          Tolkien is so good at drawing us out of the mundane and trivial parts of our lives to see that we are living
+          in great stories. After escaping briefly to Middle Earth, I return to our world newly awake to its threads of
+          myth and majesty.*</p>
         <footer>
           <!-- <p>${timeago.format(data.created_at)}</p> -->
           <div class="icons">
@@ -76,14 +87,17 @@
               <button class="end" type="submit">The end</button>
             </div>
             <div class="rating">
-            <i class="fa-solid fa-arrow-up upvote"></i><span> 0</span>
-            <i class="fa-solid fa-arrow-down"></i>
+              <i class="fa-solid fa-arrow-up upvote"></i><span> 0</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </div>
           </div>
-          </div>
-          </footer>
+        </footer>
       </div>
       <div class="contribution">
-        <p>*Hopefully, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage. Tolkien is so good at drawing us out of the mundane and trivial parts of our lives to see that we are living in great stories. After escaping briefly to Middle Earth, I return to our world newly awake to its threads of myth and majesty.*</p>
+        <p>*Hopefully, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage.
+          Tolkien is so good at drawing us out of the mundane and trivial parts of our lives to see that we are living
+          in great stories. After escaping briefly to Middle Earth, I return to our world newly awake to its threads of
+          myth and majesty.*</p>
         <footer>
           <!-- <p>${timeago.format(data.created_at)}</p> -->
           <div class="icons">
@@ -93,14 +107,14 @@
               <button class="end" type="submit">The end</button>
             </div>
             <div class="rating">
-            <i class="fa-solid fa-arrow-up upvote"></i><span> 0</span>
-            <i class="fa-solid fa-arrow-down"></i>
+              <i class="fa-solid fa-arrow-up upvote"></i><span> 0</span>
+              <i class="fa-solid fa-arrow-down"></i>
+            </div>
           </div>
-          </div>
-          </footer>
+        </footer>
       </div>
       <div class="bottom"></div>
     </main>
 </body>
-</html>
 
+</html>
