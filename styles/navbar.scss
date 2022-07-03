@@ -1,9 +1,7 @@
 @import 'variables';
 
 
-.nav-name {
-  font-size: xx-large;
-}
+
 
 nav {
   font-size: x-large;
@@ -24,7 +22,9 @@ nav {
   color: $textColor;
   box-shadow: 0 .3rem .5rem -3px $textColor;
 
-
+  .nav-name {
+    font-size: xx-large;
+  }
   .nav-links {
     display: flex;
     flex-direction: row;
