@@ -4,6 +4,14 @@
  $interactableColour: #4d693f;
  $highlightColour: #678c54;
  $boxShadow: rgba(102, 95, 82, 0.2);
+ $font-family: 'Nunito', sans-serif;
+
+/*Available font weights
+300 - light
+400 - regular
+600 - semibold
+700 - bold
+*/
 
  @mixin boxHover(){
   transition-duration: .2s;

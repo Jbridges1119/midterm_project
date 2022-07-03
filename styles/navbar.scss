@@ -21,9 +21,10 @@ nav {
   width: 100%;
   color: $textColor;
   box-shadow: 0 .3rem .5rem -3px $textColor;
-
+  font-size: 2rem;
   .nav-name {
-    font-size: xx-large;
+    font-size: 2.2rem;
+    font-weight: 700;
   }
   .nav-links {
     display: flex;
@@ -58,15 +59,20 @@ nav {
   }
 
   .navWrite {
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .nav-user {
+    cursor: default;
     font-size: x-large;
     display: flex;
     flex-direction: row;
     align-items: center;
 
+    .navbar-nav {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
     img {
       margin-left: 1rem;
       border-radius: 50%;
