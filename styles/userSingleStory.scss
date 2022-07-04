@@ -259,7 +259,9 @@ div.select {
   flex-direction: row;
 }
 
-
+div.hidden {
+  display: none
+}
 .scrollTop {
   color: inherit;
   text-decoration: inherit;

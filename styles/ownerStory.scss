@@ -226,6 +226,7 @@ body {
         }
 
         i.report {
+          margin-right: 39px;
           color: darkred;
           transition-duration: .2s;
           transition-timing-function: ease-in-out;
@@ -259,7 +260,9 @@ div.select {
   flex-direction: row;
 }
 
-
+div.hidden {
+  display: none
+}
 .scrollTop {
   color: inherit;
   text-decoration: inherit;
