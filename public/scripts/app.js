@@ -18,6 +18,9 @@ $(document).ready(function() {
 //SLIDE BUTTON TO ADD TO A STORY
   $("button.showText").click(addSlideButton);
 
+  //LIST PAGE TOGGLE BUTTONS
+  $(".toggleRight").click(loadStoriesRight)
+  $(".toggleLeft").click(loadStoriesLeft)
 })
 
 
@@ -128,22 +131,22 @@ const submitNewAdd = function(event) {
 
 
 const createStoryElement = function(data) {
-  const contribution =
+  const stories =
   `<a href="/stories/${data.id}" class="storyStamp">${data.title}</a>`
   return stories;
 };
 
 
-const renderStoriesRight = function(data) {
-  $(`#contribution-container`).empty();
-  data.forEach(stories => {
-    $('#contribution-container').prepend(createAdditionElement(stories));
+const renderStories = function(data) {
+  $(`#story-container`).empty();
+  data.forEach(story => {
+    $('#story-container').prepend(createAdditionElement(story));
   });
 };
 
 const loadStoriesRight = function(event) {
   event.preventDefault();
-  $.getJSON('/stories/:id', function(res) {
+  $.getJSON('/stories/:listdown', function(res) {
     renderStoriesRight(res);
   })
   .fail(() => {
@@ -151,4 +154,15 @@ const loadStoriesRight = function(event) {
   });
 };
 
-
+const loadStoriesLeft = function(event) {
+  event.preventDefault();
+  $.getJSON('/stories/:listup', function(res) {
+    renderStoriesRight(res);
+  })
+  .fail(() => {
+    console.error("Ajax .get Error");
+  });
+};
+//
+//  END OF STORY LIST PAGE
+//
