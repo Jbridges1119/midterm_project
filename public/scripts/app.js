@@ -6,10 +6,24 @@ $(document).ready(function() {
   //FADES IN/OUT SCROLLTOP BUTTON
   $(window).scroll(toTopFade);
 
+  //KEEPS STORY AT TOP
   $(window).scroll(storyStaysAtTop);
+
+  //RED FLAG STAYS BRIGHT WHEN CLICKED
   $("i.report").click(report);
 
+  //SUBMIT TEXT TO ADD TO STORY
+  $("form.addContribution").submit(submitNewAdd);
+
+//SLIDE BUTTON TO ADD TO A STORY
+  $("button.showText").click(addSlideButton);
+
 })
+
+
+//
+// SINGLE STORY FUNCTIONS AND EVENT HANDLERS
+//
 
 
 const storyStaysAtTop = function(){
@@ -36,3 +50,79 @@ const toTopFade = function() {
   }
   return $('.hidden').fadeOut();
 };
+
+//PREVENT JS IN INPUT
+const escape = function(str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+};
+
+//SLIDE BUTTON TO ADD TO A STORY
+const addSlideButton = function(event) {
+  event.preventDefault();
+  $("html").animate({ scrollTop: 0}, 'fast');
+  $(`.new-add`).slideToggle(250);
+  $('div.show').slideUp(150)
+  $('#add-text').focus();
+};
+
+
+
+const createAdditionElement = function(data) {
+  const contribution =
+  `<div class="contribution">
+  <input type="hidden" >
+<p>${escape(data.user.name)}</p>
+<footer>
+  <div class="icons">
+    <i class="fa-solid fa-flag report"></i>
+    <div class="rating">
+      <form class="submit" action="/users/:id" method="POST">
+      <button class="fa-solid fa-arrow-up vote"></button><span> 0</span></form>
+      <form class="submit" action="/users/:id" method="POST">
+      <button class="fa-solid fa-arrow-down vote"></i></form>
+    </div>
+  </div>
+</footer>
+</div>`
+  return contribution;
+};
+
+
+const renderContributions = function(data) {
+  $(`#add-container`).empty();
+  data.forEach(contribution => {
+    $('#add-container').prepend(createAdditionElement(contribution));
+  });
+};
+
+const loadContributions = function() {
+  $.getJSON('/stories/:id', function(res) {
+    renderContributions(res);
+  })
+  .fail(() => {
+    console.error("Ajax .get Error");
+  });
+};
+
+const submitNewAdd = function(event) {
+  event.preventDefault();
+    $.post("/stories/:id", $(this).serialize())
+    .fail(() => {
+      console.error("Ajax .post Error");
+    })
+      .then(() => {
+        loadContributions();
+      });
+};
+
+
+//
+// END OF SINGLE STORY FUNCTIONS AND EVENT HANDLERS
+//
+
+
+
+
+
