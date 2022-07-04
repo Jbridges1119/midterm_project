@@ -73,14 +73,14 @@ const createAdditionElement = function(data) {
   const contribution =
   `<div class="contribution">
   <input type="hidden" >
-<p>${escape(data.user.name)}</p>
+<p>${escape(data.text)}</p>
 <footer>
   <div class="icons">
     <i class="fa-solid fa-flag report"></i>
     <div class="rating">
-      <form class="submit" action="/users/:id" method="POST">
-      <button class="fa-solid fa-arrow-up vote"></button><span> 0</span></form>
-      <form class="submit" action="/users/:id" method="POST">
+    <form class="submit" action="/users/${data.id}" method="POST">
+    <button class="fa-solid fa-arrow-up vote"></button><span> 0</span></form>
+      <form class="submit" action="/users/${data.id}" method="POST">
       <button class="fa-solid fa-arrow-down vote"></i></form>
     </div>
   </div>
@@ -91,9 +91,9 @@ const createAdditionElement = function(data) {
 
 
 const renderContributions = function(data) {
-  $(`#add-container`).empty();
+  $(`#contribution-container`).empty();
   data.forEach(contribution => {
-    $('#add-container').prepend(createAdditionElement(contribution));
+    $('#contribution-container').prepend(createAdditionElement(contribution));
   });
 };
 
@@ -122,7 +122,33 @@ const submitNewAdd = function(event) {
 // END OF SINGLE STORY FUNCTIONS AND EVENT HANDLERS
 //
 
+//
+// STORY LIST PAGE
+//
 
 
+const createStoryElement = function(data) {
+  const contribution =
+  `<a href="/stories/${data.id}" class="storyStamp">${data.title}</a>`
+  return stories;
+};
+
+
+const renderStoriesRight = function(data) {
+  $(`#contribution-container`).empty();
+  data.forEach(stories => {
+    $('#contribution-container').prepend(createAdditionElement(stories));
+  });
+};
+
+const loadStoriesRight = function(event) {
+  event.preventDefault();
+  $.getJSON('/stories/:id', function(res) {
+    renderStoriesRight(res);
+  })
+  .fail(() => {
+    console.error("Ajax .get Error");
+  });
+};
 
 
