@@ -3,13 +3,18 @@ GET   /login/:id        ~REQUEST USER LOGGED IN COOKIE
 
 GET   /                   ~REDIRECT TO /STORIES
 GET   /STORIES            ~REQUEST STORY LIST PAGE
-GET   /STORIES/NEW        ~REQUEST CREATE STORY PAGE
+GET   /stories/:listup    ~Request 3 stories (object) - ajax
+GET   /stories/:listdown  ~Request 3 stories (object) - ajax
 GET   /STORIES/:ID        ~REQUEST SPECIFIC STORY PAGE
+GET   /STORIES/NEW        ~REQUEST CREATE STORY PAGE
+
 
 POST  /STORIES            ~CREATE NEW STORY
-POST  /STORIES/:ID        ~CREATE NEW CONTRIBUTION
+POST  /STORIES/:ID        ~CREATE NEW CONTRIBUTION - DON'T NEED REDIRECT(USING AJAX)
 
 GET   /USERS              ~REQUEST OWNER STORY LIST PAGE
+GET   /user/:listup       ~Request 3 of owners stories (object) - ajax
+GET   /user/:listdown     ~Request 3 of owners stories (object) - ajax
 GET   /USERS/:ID          ~REQUEST OWNER INDIVIDUAL STORY
 POST  /USERS/:ID          ~ADD SPECIFIC CONTRIBUTION AND CONTINUE
 

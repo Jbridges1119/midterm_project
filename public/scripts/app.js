@@ -81,9 +81,9 @@ const createAdditionElement = function(data) {
   <div class="icons">
     <i class="fa-solid fa-flag report"></i>
     <div class="rating">
-    <form class="submit" action="/users/${data.id}" method="POST">
-    <button class="fa-solid fa-arrow-up vote"></button><span> 0</span></form>
-      <form class="submit" action="/users/${data.id}" method="POST">
+    <form class="submit" action="/users/like/${data.id}" method="POST">
+    <button class="fa-solid fa-arrow-up vote"></button><span>${data.id.rating}</span></form>
+      <form class="submit" action="/users/dislike/${data.id}" method="POST">
       <button class="fa-solid fa-arrow-down vote"></i></form>
     </div>
   </div>
@@ -128,7 +128,7 @@ const submitNewAdd = function(event) {
 //
 // STORY LIST PAGE
 //
-
+let offset = 0
 
 const createStoryElement = function(data) {
   const stories =
@@ -141,13 +141,18 @@ const renderStories = function(data) {
   $(`#story-container`).empty();
   data.forEach(story => {
     $('#story-container').prepend(createAdditionElement(story));
+    if(!data.active) {
+      const finished = `<div class="storyFinished">Finished</div>`
+      $('a.storyStamp').append(finished)
+    }
   });
 };
 
 const loadStoriesRight = function(event) {
   event.preventDefault();
-  $.getJSON('/stories/:listdown', function(res) {
-    renderStoriesRight(res);
+  $.getJSON('/stories/listdown/offset', function(res) {
+    offset += 3
+    renderStories(res);
   })
   .fail(() => {
     console.error("Ajax .get Error");
@@ -156,8 +161,11 @@ const loadStoriesRight = function(event) {
 
 const loadStoriesLeft = function(event) {
   event.preventDefault();
-  $.getJSON('/stories/:listup', function(res) {
-    renderStoriesRight(res);
+  $.getJSON('/stories/listup/offset', function(res) {
+    if(offset >= 3) {
+      offset -= 3
+    }
+    renderStories(res);
   })
   .fail(() => {
     console.error("Ajax .get Error");
@@ -165,4 +173,57 @@ const loadStoriesLeft = function(event) {
 };
 //
 //  END OF STORY LIST PAGE
+//
+
+//
+// LIKE/DISLIKE FUNCTION
+//
+
+const createCounter = function(data) {
+  const counter =
+  `data.rating`;
+  return counter;
+};
+
+
+const loadLikeCounter = function(event) {
+  event.preventDefault();
+  $.getJSON('/stories/like/:id', function(data) {
+    $(`span.rating-${data.id}`).empty();
+    $(`span.rating-${data.id}`).prepend(createCounter(data));
+  })
+  .fail(() => {
+    console.error("Ajax .get Error");
+  });
+};
+
+
+const submitLike = function(event) {
+  event.preventDefault();
+  $.post("/stories/like/:id", $(this).serialize())
+  .fail(() => {
+    console.error("Ajax .post Error");
+  })
+  .then(() => {
+    loadLikeCounter();
+
+  });
+
+}
+
+const submitDislike = function(event) {
+  event.preventDefault();
+  $.post("/stories/dislike/:id", $(this).serialize())
+  .fail(() => {
+    console.error("Ajax .post Error");
+  })
+  .then(() => {
+    loadLikeCounter();
+
+  });
+
+}
+
+//
+// END OF LIKE/DISLIKE FUNCTION
 //

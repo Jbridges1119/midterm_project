@@ -75,7 +75,7 @@
             </div>
             <div class="rating">
               <form class="submit" action="/users/like/<%= :id  %>" method="POST">
-              <button class="fa-solid fa-arrow-up vote"></button><span> 0</span></form>
+              <button class="fa-solid fa-arrow-up vote"></button><span class="rating-<%= :id  %>"><%= rating  %></span></form>
               <form class="submit" action="/users/dislike/<%= :id  %>" method="POST">
               <button class="fa-solid fa-arrow-down vote"></i></form>
             </div>
