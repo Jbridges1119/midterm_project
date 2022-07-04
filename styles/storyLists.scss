@@ -1,0 +1,152 @@
+@import 'variables';
+
+
+body {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $textColor;
+
+
+h2 {
+  margin-block:90px;
+  font-size: 3.5rem;
+  font-weight: 700;
+}
+
+main.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+div.caro{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+.storyStamp {
+  background-color: lighten(#f5f3f0, 3%);
+  border: 2px solid transparent;
+  box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
+  outline: none;
+  border-radius: 4px;
+  width: 100%;
+  padding: 16px;
+  letter-spacing: 0.2px;
+  font-size: 2rem;
+
+  transition-duration: .1s;
+  transition-timing-function: ease-in-out;
+  height:300px;
+  width: 320px;
+  margin-inline:20px;
+  &:hover {
+    @include boxHover;
+
+  }
+
+  &:focus {
+
+          box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
+          transform: translateY(0.05em);
+  }
+}
+
+
+
+.arrows {
+  font-size: 3.5rem;
+  color: lighten(#f5f3f0, 3%);
+
+
+}
+.toggleLeft {
+  text-decoration: none;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: darken($background-colour, 10%);
+  height:300px;
+  width: 100px;
+  margin-inline:20px;
+  margin-right: 0px;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
+  outline: none;
+  border-radius: 4px;
+  padding: 16px;
+  letter-spacing: 0.2px;
+  font-size: 2rem;
+  transition-duration: .1s;
+  transition-timing-function: ease-in-out;
+
+  &:hover {
+    @include boxHover;
+  }
+
+  &:focus {
+    transition-duration: .05s;
+    border: 2px solid;
+    border-color: darken($background-colour, 10%);
+    box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
+    transform: translateY(0.05em);
+  }
+}
+
+
+
+
+
+
+.toggleRight {
+  text-decoration: none;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: darken($background-colour, 10%);
+  height:300px;
+  width: 100px;
+  margin-inline:20px;
+  margin-left: 0px;
+  border: 2px solid transparent;
+  box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
+  outline: none;
+  border-radius: 4px;
+  padding: 16px;
+  letter-spacing: 0.2px;
+  font-size: 2rem;
+  transition-duration: .1s;
+  transition-timing-function: ease-in-out;
+
+  &:hover {
+    @include boxHover;
+  }
+
+  &:focus {
+    transition-duration: .05s;
+    border: 2px solid;
+    border-color: darken($background-colour, 10%);
+    box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
+    transform: translateY(0.05em);
+  }
+}
+
+
+
+
+
+
+
+div.hidden {
+  display: none
+}
+
+}
