@@ -436,3 +436,12 @@ section button.addButton:active {
   box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
   transform: translateY(0.05em);
 }
+
+
+div.theEnd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5rem;
+      font-weight: 700;
+}

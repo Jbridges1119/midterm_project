@@ -321,3 +321,11 @@ div.select {
   top: 1rem;
   box-shadow: 0 10px 5px rgba(102, 95, 82, 0.2);
 }
+
+div.theEnd {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5rem;
+      font-weight: 700;
+}
