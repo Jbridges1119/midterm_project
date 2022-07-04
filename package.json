@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "sass-watch": "sass styles:public/styles --watch --poll --no-source-map",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "local": "./node_modules/.bin/nodemon -L --ignore public/",

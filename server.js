@@ -61,9 +61,18 @@ app.get("/login/:id", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("ownerStory");
 });
 
+app.get("/s", (req, res) => {
+  res.render("createStory");
+});
+app.get("/d", (req, res) => {
+  res.render("userSingleStory");
+});
+app.get("/w", (req, res) => {
+  res.render("storyLists");
+});
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
