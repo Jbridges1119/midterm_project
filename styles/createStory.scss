@@ -76,12 +76,14 @@ body {
     letter-spacing: 0.5px;
     text-transform: uppercase;
     box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
-    padding: 16px;
-    padding-inline: 60px;
+    padding: 8px;
+    margin-bottom: 5px;
+    width: 200px;
     background-color: #4d693f;
     color: #fff;
     transition-duration: .2s;
     transition-timing-function: ease-in-out;
+    margin-inline: .75rem;
 
     &:hover {
       transition-duration: .2s;
