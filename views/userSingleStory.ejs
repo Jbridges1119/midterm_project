@@ -37,30 +37,24 @@
   <%- include('partials/_header') %>
     <main>
       <div id="myStory">
-        <p class="title">*Story Title*</p>
-        <p>*Hopefully, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage.
-          Tolkien is so good at drawing us out of the mundane and trivial parts of our lives to see that we are living
-          in great stories. After escaping briefly to Middle Earth, I return to our world newly awake to its threads of
-          myth and majesty.*Hopefully, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage.
-          Tolkien is so good at drawing us out of the mundane and trivial parts of our lives to see that we are living
-          in great stories. After escaping briefly to Middle Earth, I return to our world newly awake to its threads of
-          myth and majesty.*</p>
+        <p class="title"><%= stories.title  %></p>
+        <p><%= stories.content  %></p>
         <footer>
           <div class="icons">
             <i class="fa-solid fa-flag report"></i>
           </div>
         </footer>
       </div>
-<!-- If active story boolean is inactive state -->
+      <% if(story is finished) { %>
 <div class="theEnd">The End</div>
-<!-- end if statement -->
-<!-- Else this -->
+  <% } %>
+  <%  else { %>
       <div class="show">
         <button class="showText" type="submit">continue the story</button>
       </div>
       <section class="new-add">
         <div class="addText">
-          <form class="addContribution" action="/stories/:id" method="POST">
+          <form class="addContribution" action="/stories/<%= :id  %>" method="POST">
             <textarea name="text" id="add-text" placeholder="Continue the story"></textarea>
         </div>
         <footer>
@@ -71,7 +65,7 @@
         </form>
       </section>
       <div class="border"></div>
-<!-- End else statement -->
+      <% } %>
 
 
 
@@ -79,10 +73,11 @@
 
       <section id="contribution-container">
         <!-- Contribution history fills here -->
-        <!-- Place for in loop here -->
+        <% if(contributions) { %>
+        <% for(let contribution in contributions) { %>
       <div class="contribution">
           <input type="hidden" >
-        <p>**</p>
+        <p><%= addition  %></p>
         <footer>
 
           <div class="icons">
@@ -90,57 +85,16 @@
 
 
             <div class="rating">
-              <form class="submit" action="/users/:id" method="POST">
+              <form class="submit" action="/users/like/<%= :id  %>" method="POST">
               <button class="fa-solid fa-arrow-up vote"></button><span> *</span></form>
-              <form class="submit" action="/users/:id" method="POST">
+              <form class="submit" action="/users/dislike/<%= :id  %>"" method="POST">
               <button class="fa-solid fa-arrow-down vote"></i></form>
             </div>
           </div>
         </footer>
       </div>
-      <!-- End loop here
-      DELETE REDUNDANT CONTRIBUTIONS ONCE DB IS LINKED -->
-      <div class="contribution">
-        <p>*Hopefully, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage.
-          Tolkien is so good at drawing us out of the mundane and trivial parts of our lives to see that we are living
-          in great stories. After escaping briefly to Middle Earth, I return to our world newly awake to its threads of
-          myth and majesty.*</p>
-        <footer>
-
-          <div class="icons">
-            <i class="fa-solid fa-flag report"></i>
-
-
-            <div class="rating">
-              <form class="submit" action="/users/:id" method="POST">
-              <button class="fa-solid fa-arrow-up vote"></button><span> *</span></form>
-              <form class="submit" action="/users/:id" method="POST">
-              <button class="fa-solid fa-arrow-down vote"></i></form>
-            </div>
-          </div>
-        </footer>
-      </div>
-      <div class="contribution">
-        <p>*Hopefully, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage.
-          Tolkien is so good at drawing us out of the mundane and trivial parts of our lives to see that we are living
-          in great stories. After escaping briefly to Middle Earth, I return to our world newly awake to its threads of
-          myth and majesty.*</p>
-        <footer>
-
-          <div class="icons">
-            <i id="report" class="fa-solid fa-flag report"></i>
-
-
-            <div class="rating">
-              <form class="submit" action="/users/:id" method="POST">
-              <button class="fa-solid fa-arrow-up vote"></button><span> *</span></form>
-              <form class="submit" action="/users/:id" method="POST">
-              <button class="fa-solid fa-arrow-down vote"></i></form>
-            </div>
-          </div>
-        </footer>
-      </div>
-      <!-- Delete to here -->
+      <% } %>
+      <% } %>
       </section>
       <div class="bottom"></div>
     </main>
