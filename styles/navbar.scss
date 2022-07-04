@@ -9,9 +9,9 @@ nav {
   justify-content: space-between;
   flex-direction: row;
   align-items: center;
-  padding-inline: 5rem;
+  padding-inline: 3rem;
   height: 100px;
-  background-color: #f5f3f0;
+  background-color: lighten(#f5f3f0, 3%);
   // background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png");
   color: #FFFFFF;
   position: relative;
@@ -23,10 +23,11 @@ nav {
   box-shadow: 0 .3rem .5rem -3px $textColor;
   font-size: 2rem;
   .nav-name {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     font-weight: 700;
   }
   .nav-links {
+    font-size:1.7rem;
     display: flex;
     flex-direction: row;
     align-items: center;
