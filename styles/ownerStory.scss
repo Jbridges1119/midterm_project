@@ -8,7 +8,8 @@ body {
   align-items: center;
   color: $textColor;
 
-  .myStory {
+  #myStory {
+
     box-shadow: 0 6px 8px rgba(102, 95, 82, 0.2);
     outline: none;
     border-radius: 4px;
@@ -110,18 +111,6 @@ body {
           transition-timing-function: ease-in-out;
         }
 
-        i.report:hover {
-          transition-duration: .2s;
-          transition-timing-function: ease-in-out;
-          transform: translateY(-2px);
-          color: rgb(212, 0, 0);
-          cursor: pointer;
-        }
-
-        i.report:active {
-          color: darkred;
-          transform: translateY(0.05em);
-        }
       }
     }
   }
@@ -168,10 +157,14 @@ body {
     }
 
     footer {
+      form{
+        height: 100%;
+      }
       font-size: 1.5rem;
       width: 100%;
 
       button {
+
         border-radius: 4px;
         border: 0;
         cursor: pointer;
@@ -206,13 +199,19 @@ body {
         }
       }
 
-      .icons {
+      div.rating {
+        display:flex;
+
+      }
+      div.icons {
         display: flex;
+        flex-direction: row;
         justify-content: space-between;
         align-items: center;
         color: $interactableColour;
 
         i {
+          margin:5px;
           transition-duration: .2s;
           transition-timing-function: ease-in-out;
 
@@ -268,19 +267,8 @@ body {
           transition-timing-function: ease-in-out;
         }
 
-        i.report:hover {
-          transition-duration: .2s;
-          transition-timing-function: ease-in-out;
-          transform: translateY(-2px);
-          color: rgb(212, 0, 0);
-          cursor: pointer;
-        }
-
-        i.report:active {
-          color: darkred;
-          transform: translateY(0.05em);
-        }
       }
+
     }
   }
 
@@ -288,4 +276,60 @@ body {
     margin: 30px;
   }
 
+}
+div.select {
+  display:flex;
+  flex-direction: row;
+}
+
+
+.scrollTop {
+  color: inherit;
+  text-decoration: inherit;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  width: 80px;
+  background-color: $interactableColour;
+  // background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png");
+  position: fixed;
+  bottom: 300px;
+  right: 25px;
+  border-radius: 4px;
+}
+.scrollTop:hover {
+  background-color:$highlightColour;
+}
+.scrollTop:active {
+  transform: translateY(0.15em);
+}
+
+.scrollTop:hover .fa-angles-up {
+  animation: bounce-2 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bounce-2 {
+  0%, 25%, 50%, 75%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-16px);
+  }
+}
+.fa-angles-up {
+  color: $background-colour;
+  font-size: 2rem;
+}
+#myStory.stationary {
+  transition: .5s;
+  z-index: 1;
+  position: sticky;
+  top: 1rem;
+  box-shadow: 0 10px 10px rgba(102, 95, 82, 0.2);
 }

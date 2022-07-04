@@ -27,15 +27,16 @@
   <link rel="stylesheet" href="/styles/ownerStory.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
+
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
   <!--  Nav Bar  -->
   <%- include('partials/_header') %>
     <main>
-      <div class="myStory">
+      <div id="myStory">
         <p class="title">*Story Title*</p>
         <p>*Hopefully, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage.
           Tolkien is so good at drawing us out of the mundane and trivial parts of our lives to see that we are living
@@ -45,16 +46,13 @@
           <!-- <p>${timeago.format(data.created_at)}</p> -->
           <div class="icons">
             <i class="fa-solid fa-flag report"></i>
-            <div class="rating">
-              <i class="fa-solid fa-arrow-up upvote"></i><span> 0</span>
-              <i class="fa-solid fa-arrow-down"></i>
-            </div>
           </div>
         </footer>
       </div>
       <div class="border"></div>
       <div class="contribution">
-        <p>*Hopefully, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage.
+          <input type="hidden" >
+        <p>*Hopefully11111, today could be an invitation to pick up the trilogy, if only to hunt for a favorite passage.
           Tolkien is so good at drawing us out of the mundane and trivial parts of our lives to see that we are living
           in great stories. After escaping briefly to Middle Earth, I return to our world newly awake to its threads of
           myth and majesty.*</p>
@@ -63,12 +61,19 @@
           <div class="icons">
             <i class="fa-solid fa-flag report"></i>
             <div class="select">
+              <form class="submit" action="/users/:id" method="POST">
               <button class="add" type="submit">Continue</button>
+            </form>
+            <form class="submit" action="/users/end/:id" method="POST">
               <button class="end" type="submit">The end</button>
+            </form>
             </div>
+
             <div class="rating">
-              <i class="fa-solid fa-arrow-up upvote"></i><span> 0</span>
-              <i class="fa-solid fa-arrow-down"></i>
+              <form class="submit" action="/users/like/:id" method="POST">
+              <i class="fa-solid fa-arrow-up upvote"></i></form><span> 0</span>
+              <form class="submit" action="/users/dislike/:id" method="POST">
+              <i class="fa-solid fa-arrow-down"></i></form>
             </div>
           </div>
         </footer>
@@ -83,12 +88,19 @@
           <div class="icons">
             <i class="fa-solid fa-flag report"></i>
             <div class="select">
+              <form class="submit" action="/users/:id" method="POST">
               <button class="add" type="submit">Continue</button>
+            </form>
+            <form class="submit" action="/users/end/:id" method="POST">
               <button class="end" type="submit">The end</button>
+            </form>
             </div>
+
             <div class="rating">
-              <i class="fa-solid fa-arrow-up upvote"></i><span> 0</span>
-              <i class="fa-solid fa-arrow-down"></i>
+              <form class="submit" action="/users/like/:id" method="POST">
+              <i class="fa-solid fa-arrow-up upvote"></i></form><span> 0</span>
+              <form class="submit" action="/users/dislike/:id" method="POST">
+              <i class="fa-solid fa-arrow-down"></i></form>
             </div>
           </div>
         </footer>
@@ -101,20 +113,30 @@
         <footer>
           <!-- <p>${timeago.format(data.created_at)}</p> -->
           <div class="icons">
-            <i class="fa-solid fa-flag report"></i>
+            <i id="report" class="fa-solid fa-flag report"></i>
             <div class="select">
+              <form class="submit" action="/users/:id" method="POST">
               <button class="add" type="submit">Continue</button>
+            </form>
+            <form class="submit" action="/users/end/:id" method="POST">
               <button class="end" type="submit">The end</button>
+            </form>
             </div>
+
             <div class="rating">
-              <i class="fa-solid fa-arrow-up upvote"></i><span> 0</span>
-              <i class="fa-solid fa-arrow-down"></i>
+              <form class="submit" action="/users/:id" method="POST">
+              <i class="fa-solid fa-arrow-up upvote"></i><span> 0</span></form>
+              <form class="submit" action="/users/:id" method="POST">
+              <i class="fa-solid fa-arrow-down"></i></form>
             </div>
           </div>
         </footer>
       </div>
       <div class="bottom"></div>
     </main>
+    <div class="hidden">
+      <a href="" class="scrollTop"><i class="fa-solid fa-angles-up"></i></a>
+    </div>
 </body>
 
 </html>
