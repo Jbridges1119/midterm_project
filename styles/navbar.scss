@@ -1,0 +1,86 @@
+@import 'variables';
+
+
+
+
+nav {
+  font-size: x-large;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  padding-inline: 3rem;
+  height: 100px;
+  background-color: lighten(#f5f3f0, 3%);
+  // background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png");
+  color: #FFFFFF;
+  position: relative;
+  z-index: 2;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  color: $textColor;
+  box-shadow: 0 .3rem .5rem -3px $textColor;
+  font-size: 2rem;
+  .nav-name {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  .nav-links {
+    font-size:1.7rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    a {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: inherit;
+      text-decoration: inherit;
+      height: 100px;
+      transition-duration: .25s;
+      transition-timing-function: ease-in-out;
+
+      &:hover {
+        transition-duration: .25s;
+        transition-timing-function: ease-in-out;
+        box-shadow: inset 0 -.8rem 0 -3px $interactableColour;
+        color: $interactableColour
+      }
+
+      &:active {
+        transform: translateY(0.05em);
+      }
+    }
+
+    .nav-story {
+      padding-left: 3rem;
+    }
+  }
+
+  .navWrite {
+    font-weight: 700;
+  }
+
+  .nav-user {
+    cursor: default;
+    font-size: x-large;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .navbar-nav {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+    img {
+      margin-left: 1rem;
+      border-radius: 50%;
+      height: auto;
+      width: auto;
+      max-width: 5rem;
+      max-height: 5rem;
+    }
+  }
+}
