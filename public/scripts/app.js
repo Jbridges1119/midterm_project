@@ -19,8 +19,66 @@ $(document).ready(function() {
   $("button.showText").click(addSlideButton);
 
   //LIST PAGE TOGGLE BUTTONS
-  $(".toggleRight").click(loadStoriesRight)
-  $(".toggleLeft").click(loadStoriesLeft)
+  let offset = 0
+  $("a.toggleRight").click(function(event) {
+    event.preventDefault();
+  offset += 3
+    $.getJSON(`/stories/listdown/${offset}`, function(res) {
+      if(!res.stories.length) {
+        offset -= 3
+        return $('.caro').effect( "bounce", {direction:'right',distance:15, times:3}, 150 );
+        }
+        renderStories(res);
+     })
+    .fail(() => {
+       console.error("Ajax .get Error");
+    });
+  })
+  $("a.toggleLeft").click(function(event) {
+  event.preventDefault();
+  if(offset <= 0) {
+    return $('.caro').effect( "bounce", {direction:'right',distance:15, times:3}, 150 );
+    }
+  offset -= 3
+  $.getJSON(`/stories/listup/${offset}`, function(res) {
+    renderStories(res);
+  })
+  .fail(() => {
+    console.error("Ajax .get Error");
+  });
+})
+//OWNERS LIST PAGE TOGGLE BUTTONS - USES OFFSET
+$("a.toggleOwnerRight").click(function(event) {
+  event.preventDefault();
+offset += 3
+  $.getJSON(`/users/listdown/${offset}`, function(res) {
+    console.log(res)
+    if(!res.stories.length) {
+      offset -= 3
+      return $('.caro').effect( "bounce", {direction:'right',distance:15, times:3}, 150 );
+      }
+      renderStories(res);
+   })
+  .fail(() => {
+     console.error("Ajax .get Error");
+  });
+})
+$("a.toggleOwnerLeft").click(function(event) {
+  event.preventDefault();
+  if(offset <= 0) {
+    return $('.caro').effect( "bounce", {direction:'right',distance:15, times:3}, 150 );
+    }
+  offset -= 3
+  $.getJSON(`/users/listup/${offset}`, function(res) {
+    renderStories(res);
+  })
+  .fail(() => {
+    console.error("Ajax .get Error");
+  });
+})
+
+
+
 })
 
 
@@ -128,49 +186,26 @@ const submitNewAdd = function(event) {
 //
 // STORY LIST PAGE
 //
-let offset = 0
-
 const createStoryElement = function(data) {
+
+  if(!data.completed) {
+    const notFinished = `<a href="/stories/${data.id}"  class="storyStamp">${data.title}<div class="desc">${data.content.substring(0, 150) + "..."}</div><div   class="storyFinished">In Progress</div></a>`
+    return notFinished;
+  }
   const stories =
-  `<a href="/stories/${data.id}" class="storyStamp">${data.title}</a>`
+  `<a href="/stories/${data.id}"  class="storyStamp">${data.title}<div class="desc">${data.content.substring(0, 150) + "..."}</div><div   class="storyFinished">Finished</div></a>`
   return stories;
 };
 
 
-const renderStories = function(data) {
+const renderStories = function(res) {
   $(`#story-container`).empty();
-  data.forEach(story => {
-    $('#story-container').prepend(createAdditionElement(story));
-    if(!data.active) {
-      const finished = `<div class="storyFinished">Finished</div>`
-      $('a.storyStamp').append(finished)
-    }
-  });
-};
+  for (let story of res.stories) {
+    $('#story-container').append(createStoryElement(story));
 
-const loadStoriesRight = function(event) {
-  event.preventDefault();
-  $.getJSON('/stories/listdown/offset', function(res) {
-    offset += 3
-    renderStories(res);
-  })
-  .fail(() => {
-    console.error("Ajax .get Error");
-  });
-};
+  }
+  }
 
-const loadStoriesLeft = function(event) {
-  event.preventDefault();
-  $.getJSON('/stories/listup/offset', function(res) {
-    if(offset >= 3) {
-      offset -= 3
-    }
-    renderStories(res);
-  })
-  .fail(() => {
-    console.error("Ajax .get Error");
-  });
-};
 //
 //  END OF STORY LIST PAGE
 //
