@@ -133,22 +133,23 @@ const addSlideButton = function(event) {
 
 
 const createAdditionElement = function(data) {
-  const contribution =
-  `<div class="contribution">
-  <input type="hidden" >
-<p>${escape(data.text)}</p>
-<footer>
-  <div class="icons">
-    <i class="fa-solid fa-flag report"></i>
-    <div class="rating">
-    <form class="submit" action="/users/like/${data.id}" method="POST">
-    <button class="fa-solid fa-arrow-up vote"></button><span>${data.id.rating}</span></form>
-      <form class="submit" action="/users/dislike/${data.id}" method="POST">
-      <button class="fa-solid fa-arrow-down vote"></i></form>
-    </div>
-  </div>
-</footer>
-</div>`
+  console.log(data, 'Hope this works')
+//   const contribution =
+//   `<div class="contribution">
+//   <input type="hidden" >
+// <p>${escape(data.text)}</p>
+// <footer>
+//   <div class="icons">
+//     <i class="fa-solid fa-flag report"></i>
+//     <div class="rating">
+//     <form class="submit" action="/users/like/${data.id}" method="POST">
+//     <button class="fa-solid fa-arrow-up vote"></button><span>${data.id.rating}</span></form>
+//       <form class="submit" action="/users/dislike/${data.id}" method="POST">
+//       <button class="fa-solid fa-arrow-down vote"></i></form>
+//     </div>
+//   </div>
+// </footer>
+// </div>`
   return contribution;
 };
 
@@ -171,16 +172,16 @@ const loadContributions = function() {
 
 const submitNewAdd = function(event) {
   event.preventDefault();
-  console.log(event.params)
-  const id = event
+  const string = event.currentTarget.baseURI
+  const id = string.charAt(string.length - 1)
   console.log(id,' where is this')
     $.post(`/stories/${id}`, $(this).serialize())
     .fail(() => {
       console.error("Ajax .post Error");
     })
-      // .then(() => {
-      //   loadContributions();
-      // });
+      .then(() => {
+        loadContributions();
+      });
 };
 
 

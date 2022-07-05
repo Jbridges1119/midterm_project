@@ -69,7 +69,6 @@ module.exports = (db) => {
       db.query(query2, [storyID])
       .then((data2) => {
         stories['contributions'] = data2.rows;
-        console.log(stories)
         res.render('userSingleStory', {stories})
       })
     })
@@ -83,20 +82,21 @@ module.exports = (db) => {
 
 
   router.post("/:id", (req, res) => {
-    // console.log(req.body, "WHEREEEE")
-    // console.log(req.params.id, "WHEREEEE")
-    // let query = `INSERT INTO contributions (story_id, additions, rating)
-    // VALUES;`;
-    // db.query(query, [contributionID])
-    //   .then(data => {
-    //     const contribution = data.rows;
-    //     res.json( {contribution} )
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
+    const addition = req.body.text
+    const story_id = req.params.id
+    contribution = [story_id, addition]
+    let query = `INSERT INTO contributions (story_id, additions)
+    VALUES $1, $2;`;
+    db.query(query, [contribution])
+      .then(data => {
+        const contribution = data.rows;
+        res.json( {contribution} )
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
     })
 
   return router;
