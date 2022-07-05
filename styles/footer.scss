@@ -1,0 +1,22 @@
+@import 'variables';
+
+footer.ending {
+  position: absolute;
+  bottom: 0;
+  height: 40px;
+  width: 100%;
+  background-color: $textColor;
+  color:$background-colour;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+
+  z-index: 5;
+  p {
+    margin-block: 0px;
+  }
+}
+
+

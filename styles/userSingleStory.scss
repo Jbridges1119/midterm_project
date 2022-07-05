@@ -263,6 +263,7 @@ div.hidden {
   display: none
 }
 .scrollTop {
+  opacity: 0.7;
   color: inherit;
   text-decoration: inherit;
   display: flex;
@@ -272,7 +273,6 @@ div.hidden {
   height: 80px;
   width: 80px;
   background-color: $interactableColour;
-  // background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png");
   position: fixed;
   bottom: 300px;
   right: 25px;

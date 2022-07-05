@@ -63,7 +63,7 @@ div.caro{
     transition-duration: .2s;
     transition-timing-function: ease-in-out;
     box-shadow: 0 4px 6px rgba(102, 95, 82, 0.3);
-    transform: translateY(-2px);
+    transform: translateY(-3px);
   }
 
   &:active {
@@ -99,7 +99,7 @@ div.caro{
 
 
 }
-.toggleLeft {
+.toggleOwnerLeft {
   text-decoration: none;
   display:flex;
   justify-content: center;
@@ -146,7 +146,7 @@ div.desc{
 
 
 
-.toggleRight {
+.toggleOwnerRight {
   text-decoration: none;
   display:flex;
   justify-content: center;
@@ -189,7 +189,7 @@ div.desc{
 // @keyframes bounce-2 {
 
 //   0% { transform: translate(0,  0px); }
-//   50%  { transform: translate(0, -12px); }
+//   50%  { transform: translate(0, -8px); }
 //   100%   { transform: translate(0, -0px); }
 
 // }
