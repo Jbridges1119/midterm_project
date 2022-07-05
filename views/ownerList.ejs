@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/navbar.css" type="text/css" />
   <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/storyLists.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/ownerList.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
 
@@ -37,19 +37,19 @@
   <!--  Nav Bar  -->
   <%- include('partials/_header') %>
 
-      <h2>Choose A Story</h2>
+      <h2>Your Stories</h2>
       <main class="list">
-      <a href="/stories/pizzamakesmehappy" class="toggleLeft"><i class="fa-solid fa-angles-left arrows"></i></a>
+      <a href="/stories/<%= 0%>" class="toggleOwnerLeft"><i class="fa-solid fa-angles-left arrows"></i></a>
       <div class="caro" id="story-container">
         <% for(let key of stories) { %>
-          <%if (key.completed) {%>
-      <a href="/stories/<%= key['id']%>"  class="storyStamp"><%= key['title'] %><div class="desc"><%=key.content.substring(0, 160) + "..." %></div><div   class="storyInProgress">In Progress</div></a>
-      <% } else {%>
-        <a href="/stories/<%= key['id']%>"  class="storyStamp"><%= key['title'] %><div class="desc"><%=key.content.substring(0, 160) + "..." %></div><div   class="storyFinished">Completed</div></a>
-        <% } %>
+          <%if (!key.completed) {%>
+            <a href="/stories/<%= key.id%>"  class="storyStamp"><%= key['title'] %><div class="desc"><%=key.content.substring(0, 160) + "..." %></div><div   class="storyInProgress">In Progress</div></a>
+            <% } else {%>
+              <a href="/stories/<%= key.id%>"  class="storyStamp"><%= key['title'] %><div class="desc"><%=key.content.substring(0, 160) + "..." %></div><div   class="storyFinished">Completed</div></a>
+              <% } %>
       <% } %>
       </div>
-      <a href="/stories/listdown/sodopuppies" class="toggleRight"><i class="fa-solid fa-angles-right arrows"></i></a>
+      <a href="/stories/listdown/<%= 0%>" class="toggleOwnerRight"><i class="fa-solid fa-angles-right arrows"></i></a>
     </main>
 
 

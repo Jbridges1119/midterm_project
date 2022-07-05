@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/navbar.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
   <link rel="stylesheet" href="/styles/userSingleStory.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -54,7 +55,7 @@
       </div>
       <section class="new-add">
         <div class="addText">
-          <form class="addContribution" action="/stories/<%= :id  %>" method="POST">
+          <form class="addContribution" action="/stories/<%= story:id  %>" method="POST">
             <textarea name="text" id="add-text" placeholder="Continue the story"></textarea>
         </div>
         <footer>
@@ -85,9 +86,9 @@
 
 
             <div class="rating">
-              <form class="submit" action="/users/like/<%= :id  %>" method="POST">
+              <form class="submit" action="/users/like/<%= contribtution:id  %>" method="POST">
               <button class="fa-solid fa-arrow-up vote"></button><span class="ratingCounter"> <%= rating  %></span></form>
-              <form class="submit" action="/users/dislike/<%= :id  %>"" method="POST">
+              <form class="submit" action="/users/dislike/<%= contribution:id  %>"" method="POST">
               <button class="fa-solid fa-arrow-down vote"></i></form>
             </div>
           </div>
@@ -103,5 +104,5 @@
     </div>
   </section>
 </body>
-
+<%- include('partials/_footer') %>
 </html>
