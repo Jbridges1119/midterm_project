@@ -35,7 +35,7 @@ module.exports = (db) => {
     .catch(err => {
       res
       .status(500)
-      .json({erroe: err.message})''
+      .json({erroe: err.message});
     });
   });
 
@@ -47,8 +47,8 @@ module.exports = (db) => {
     .catch(err => {
       res
       .status(500)
-      .json({erroe: err.message})''
+      .json({erroe: err.message});
     });
-  })
+  });
   return router;
 };
