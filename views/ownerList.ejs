@@ -45,7 +45,7 @@
           <%if (!key.completed) {%>
             <a href="/stories/<%= key.id%>"  class="storyStamp"><%= key['title'] %><div class="desc"><%=key.content.substring(0, 160) + "..." %></div><div   class="storyInProgress">In Progress</div></a>
             <% } else {%>
-              <a href="/stories/<%= key.id%>"  class="storyStamp"><%= key['title'] %><div class="desc"><%=key.content.substring(0, 160) + "..." %></div><div   class="storyFinished">Completed</div></a>
+              <a href="/stories/<%= key.id%>"  class="storyStamp"><%= key['title'] %><div class="desc"><%=key.content.substring(0, 160) + "..." %></div><div   class="storyFinished">Complete</div></a>
               <% } %>
       <% } %>
       </div>

@@ -24,8 +24,8 @@
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <link rel="stylesheet" href="/styles/navbar.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
   <link rel="stylesheet" href="/styles/userSingleStory.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
 
@@ -38,24 +38,23 @@
   <%- include('partials/_header') %>
     <main>
       <div id="myStory">
-        <p class="title"><%= stories.title  %></p>
-        <p><%= stories.content  %></p>
+        <p class="title"><%= stories.story[0].title  %></p>
+        <p><%= stories.story[0].content  %></p>
         <footer>
           <div class="icons">
             <i class="fa-solid fa-flag report"></i>
           </div>
         </footer>
       </div>
-      <% if(story is finished) { %>
+      <% if(stories.story[0].completed) { %>
 <div class="theEnd">The End</div>
-  <% } %>
-  <%  else { %>
+  <% } else {%>
       <div class="show">
         <button class="showText" type="submit">continue the story</button>
       </div>
       <section class="new-add">
         <div class="addText">
-          <form class="addContribution" action="/stories/<%= story:id  %>" method="POST">
+          <form id="<% stories.story[0].title %>" class="addContribution" action="/stories/<% stories.story[0].id %>" method="POST">
             <textarea name="text" id="add-text" placeholder="Continue the story"></textarea>
         </div>
         <footer>
@@ -68,34 +67,27 @@
       <div class="border"></div>
       <% } %>
 
-
-
-
-
       <section id="contribution-container">
         <!-- Contribution history fills here -->
-        <% if(contributions) { %>
-        <% for(let contribution in contributions) { %>
-      <div class="contribution">
-          <input type="hidden" >
-        <p><%= addition  %></p>
-        <footer>
-
-          <div class="icons">
-            <i class="fa-solid fa-flag report"></i>
-
-
-            <div class="rating">
-              <form class="submit" action="/users/like/<%= contribtution:id  %>" method="POST">
-              <button class="fa-solid fa-arrow-up vote"></button><span class="ratingCounter"> <%= rating  %></span></form>
-              <form class="submit" action="/users/dislike/<%= contribution:id  %>"" method="POST">
-              <button class="fa-solid fa-arrow-down vote"></i></form>
+        <% if(stories.contributions.length) { %>
+          <% for(let contribution of stories.contributions) { %>
+        <div class="contribution">
+            <input type="hidden" >
+          <p><%= contribution.additions  %></p>
+          <footer>
+            <div class="icons">
+              <i class="fa-solid fa-flag report"></i>
+              <div class="rating">
+                <form class="submit" action="/users/like/<%= contribution.id  %>" method="POST">
+                <button id="<%= contribution.id  %>" class="fa-solid fa-arrow-up vote"></button><span id="<%= contribution.id  %>" class="ratingCounter" ><div id="vaiableCounter"> <%= contribution.rating  %></div></span></form>
+                <form id="<%= contribution.id  %>" class="submit" action="/users/dislike/<%= contribution.id  %>"" method="POST">
+                <button id="<%= contribution.id  %>"class="fa-solid fa-arrow-down vote"></i></form>
+              </div>
             </div>
-          </div>
-        </footer>
-      </div>
-      <% } %>
-      <% } %>
+          </footer>
+        </div>
+        <% } %>
+        <% } %>
       </section>
       <div class="bottom"></div>
     </main>

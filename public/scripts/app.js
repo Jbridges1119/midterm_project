@@ -76,9 +76,11 @@ $("a.toggleOwnerLeft").click(function(event) {
     console.error("Ajax .get Error");
   });
 })
+$('button.fa-arrow-up').click(submitLike)
 
+$('button.fa-arrow-down').click(submitDislike)
 
-
+$('.addContribution').click(submitNewAdd)
 })
 
 
@@ -169,13 +171,16 @@ const loadContributions = function() {
 
 const submitNewAdd = function(event) {
   event.preventDefault();
-    $.post("/stories/:id", $(this).serialize())
+  console.log(event.params)
+  const id = event
+  console.log(id,' where is this')
+    $.post(`/stories/${id}`, $(this).serialize())
     .fail(() => {
       console.error("Ajax .post Error");
     })
-      .then(() => {
-        loadContributions();
-      });
+      // .then(() => {
+      //   loadContributions();
+      // });
 };
 
 
@@ -193,7 +198,7 @@ const createStoryElement = function(data) {
     return notFinished;
   }
   const stories =
-  `<a href="/stories/${data.id}"  class="storyStamp">${data.title}<div class="desc">${data.content.substring(0, 150) + "..."}</div><div   class="storyFinished">Finished</div></a>`
+  `<a href="/stories/${data.id}"  class="storyStamp">${data.title}<div class="desc">${data.content.substring(0, 150) + "..."}</div><div   class="storyFinished">Complete</div></a>`
   return stories;
 };
 
@@ -214,49 +219,47 @@ const renderStories = function(res) {
 // LIKE/DISLIKE FUNCTION
 //
 
+//FORM CURRENT RATING INTO HTML
 const createCounter = function(data) {
-  const counter =
-  `data.rating`;
+  const counter = `<div id="vaiableCounter">${data.contribution[0].rating}</div>`
   return counter;
 };
 
-
-const loadLikeCounter = function(event) {
-  event.preventDefault();
-  $.getJSON('/stories/like/:id', function(data) {
-    $(`span.rating-${data.id}`).empty();
-    $(`span.rating-${data.id}`).prepend(createCounter(data));
+//GET CURRENT CONTRIBUTION RATING
+const loadRatingCounter = function(event) {
+  $.getJSON(`/users/rating/${event}`, function(data) {
+    $(`#${data.contribution[0].id}.ratingCounter`).empty();
+    $(`#${data.contribution[0].id}.ratingCounter`).prepend(createCounter(data));
   })
   .fail(() => {
-    console.error("Ajax .get Error");
+    console.error("Ajax .get Error here");
   });
 };
 
-
+//POST TO INCREASE CONTRIBUTION RATING BY 1
 const submitLike = function(event) {
   event.preventDefault();
-  $.post("/stories/like/:id", $(this).serialize())
+  const id = event.currentTarget.id
+  $.post(`/users/like/${id}`, $(this).serialize())
   .fail(() => {
     console.error("Ajax .post Error");
   })
   .then(() => {
-    loadLikeCounter();
-
+    loadRatingCounter(id);
   });
-
 }
-
+//POST TO REDUCT CONTRIBUTION RATING BY 1
 const submitDislike = function(event) {
   event.preventDefault();
-  $.post("/stories/dislike/:id", $(this).serialize())
+  const id = event.currentTarget.id
+  console.log(id)
+  $.post(`/users/dislike/${id}`, $(this).serialize())
   .fail(() => {
-    console.error("Ajax .post Error");
+    console.error("Ajax .post Error here");
   })
   .then(() => {
-    loadLikeCounter();
-
+    loadRatingCounter(id);
   });
-
 }
 
 //

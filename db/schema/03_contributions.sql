@@ -5,4 +5,4 @@ CREATE TABLE contributions (
   story_id INTEGER REFERENCES stories(id) ON DELETE CASCADE,
   additions TEXT,
   rating SMALLINT DEFAULT 0
-)
+);

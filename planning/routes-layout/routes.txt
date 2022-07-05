@@ -1,25 +1,26 @@
-GET   /login            ~REQUEST LOGIN PAGE -- STRETCH
-GET   /login/:id        ~REQUEST USER LOGGED IN COOKIE
+GET   /login                           ~REQUEST LOGIN PAGE -- STRETCH
+DONE GET   /login/:id                  ~REQUEST USER LOGGED IN COOKIE
 
-GET   /                   ~REDIRECT TO /STORIES
-GET   /STORIES            ~REQUEST STORY LIST PAGE
-GET   /stories/:listup    ~Request 3 stories (object) - ajax
-GET   /stories/:listdown  ~Request 3 stories (object) - ajax
-GET   /STORIES/:ID        ~REQUEST SPECIFIC STORY PAGE
-GET   /STORIES/NEW        ~REQUEST CREATE STORY PAGE
-
-
-POST  /STORIES            ~CREATE NEW STORY
-POST  /STORIES/:ID        ~CREATE NEW CONTRIBUTION - DON'T NEED REDIRECT(USING AJAX)
-
-GET   /USERS              ~REQUEST OWNER STORY LIST PAGE
-GET   /user/:listup       ~Request 3 of owners stories (object) - ajax
-GET   /user/:listdown     ~Request 3 of owners stories (object) - ajax
-GET   /USERS/:ID          ~REQUEST OWNER INDIVIDUAL STORY
-POST  /USERS/:ID          ~ADD SPECIFIC CONTRIBUTION AND CONTINUE
+DONE GET   /                           ~REDIRECT TO /STORIES
+DONE GET   /STORIES                    ~REQUEST STORY LIST PAGE
+DONE GET   /stories/listup/:output     ~Request 3 stories (object) - ajax
+DONE GET   /stories/listdown/:output   ~Request 3 stories (object) - ajax
+GET   /STORIES/:ID                     ~REQUEST SPECIFIC STORY PAGE
+GET   /STORIES/NEW                     ~REQUEST CREATE STORY PAGE
 
 
+POST  /STORIES                    ~CREATE NEW STORY
+POST  /STORIES/:ID                ~CREATE NEW CONTRIBUTION - DON'T NEED REDIRECT(USING AJAX)
 
-POST  /users/end/:id      ~ADD SPECIFIC CONTRIBUTION AND END
-POST  /users/like/:id     ~ADD 1 INTEGER TO RATING AND SHOW NUMBER - AJAX
-POST  /users/dilike/:id   ~REMOVE 1 INTEGER FROM RATING AND SHOW NUMBER -AJAX
+DONE GET   /USERS/:id             ~REQUEST OWNER STORY LIST PAGE
+DONE GET   /users/:listup         ~Request 3 of owners stories (object) - ajax
+DONE GET   /users/:listdown       ~Request 3 of owners stories (object) - ajax
+
+
+GET   /USERS/story/:ID          ~REQUEST OWNER INDIVIDUAL STORY
+POST  /USERS/story/:ID          ~ADD SPECIFIC CONTRIBUTION AND CONTINUE
+POST  /users/end/:id            ~ADD SPECIFIC CONTRIBUTION AND END
+
+DONE  POST  /users/like/:id           ~ADD 1 INTEGER TO RATING AND SHOW NUMBER - AJAX
+DONE  POST  /users/dilike/:id         ~REMOVE 1 INTEGER FROM RATING AND SHOW NUMBER -AJAX
+DONE  GET   /users/rating/:id         ~REQUEST RATING FOR SPECIFIC ADDITION - AJAX

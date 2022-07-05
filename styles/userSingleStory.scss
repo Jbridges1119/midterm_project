@@ -9,7 +9,6 @@ body {
   color: $textColor;
 
   #myStory {
-
     box-shadow: 0 6px 8px rgba(102, 95, 82, 0.2);
     outline: none;
     border-radius: 4px;
@@ -114,6 +113,7 @@ body {
 
     footer {
       form {
+        display: flex;
         height: 100%;
       }
 
@@ -263,7 +263,7 @@ div.hidden {
   display: none
 }
 .scrollTop {
-  opacity: 0.7;
+  opacity: 0.5;
   color: inherit;
   text-decoration: inherit;
   display: flex;
@@ -446,4 +446,12 @@ div.theEnd {
   align-items: center;
   font-size: 3.5rem;
       font-weight: 700;
+}
+
+
+#vaiableCounter {
+  text-align: center;
+  width:24px;
+  align-items: center;
+  text-align: end;
 }
