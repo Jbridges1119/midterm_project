@@ -50,9 +50,8 @@ $(document).ready(function() {
 //OWNERS LIST PAGE TOGGLE BUTTONS - USES OFFSET
 $("a.toggleOwnerRight").click(function(event) {
   event.preventDefault();
-offset += 3
+  offset += 3
   $.getJSON(`/users/listdown/${offset}`, function(res) {
-    console.log(res)
     if(!res.stories.length) {
       offset -= 3
       return $('.caro').effect( "bounce", {direction:'right',distance:15, times:3}, 150 );
@@ -80,7 +79,7 @@ $('button.fa-arrow-up').click(submitLike)
 
 $('button.fa-arrow-down').click(submitDislike)
 
-$('.addContribution').click(submitNewAdd)
+
 })
 
 
@@ -131,56 +130,71 @@ const addSlideButton = function(event) {
 };
 
 
-
 const createAdditionElement = function(data) {
-  console.log(data, 'Hope this works')
-//   const contribution =
-//   `<div class="contribution">
-//   <input type="hidden" >
-// <p>${escape(data.text)}</p>
-// <footer>
-//   <div class="icons">
-//     <i class="fa-solid fa-flag report"></i>
-//     <div class="rating">
-//     <form class="submit" action="/users/like/${data.id}" method="POST">
-//     <button class="fa-solid fa-arrow-up vote"></button><span>${data.id.rating}</span></form>
-//       <form class="submit" action="/users/dislike/${data.id}" method="POST">
-//       <button class="fa-solid fa-arrow-down vote"></i></form>
-//     </div>
-//   </div>
-// </footer>
-// </div>`
+  const contribution =
+ `<div class="contribution">
+<input type="hidden" >
+<p>${escape(data.additions)}</p>
+<footer>
+<div class="icons">
+  <i class="fa-solid fa-flag report"></i>
+  <div class="rating">
+    <form class="submit" action="/users/like/${data.id}" method="POST">
+    <button id="${data.id}" class="fa-solid fa-arrow-up vote"></button>
+    <span id="${data.id}" class="ratingCounter" >
+      <div id="vaiableCounter"> ${data.rating}
+      </div></span></form>
+    <form id="${data.id}" class="submit" action="/users/dislike/${data.id}"" method="POST">
+    <button id="${data.id}"class="fa-solid fa-arrow-down vote"></i></form>
+  </div>
+</div>
+</footer>
+</div>`
+
+
   return contribution;
 };
 
 
 const renderContributions = function(data) {
   $(`#contribution-container`).empty();
-  data.forEach(contribution => {
+  data.contributions.forEach(contribution => {
     $('#contribution-container').prepend(createAdditionElement(contribution));
   });
+
 };
 
-const loadContributions = function() {
-  $.getJSON('/stories/:id', function(res) {
+const loadContributions = function(id) {
+  $.getJSON(`/stories/additions/${id}`, function(res) {
     renderContributions(res);
   })
   .fail(() => {
-    console.error("Ajax .get Error");
+    console.error("Ajax .get Error here?");
   });
 };
 
 const submitNewAdd = function(event) {
   event.preventDefault();
   const string = event.currentTarget.baseURI
+  let numberString = '';
+  for (let i = string.length - 1; i > 0; i--){
+    if(string[i] === "/"){
+      break
+    } else {
+      numberString += string[i]
+    }
+  }
+  numberString = numberString.split('').reverse().join('')
   const id = string.charAt(string.length - 1)
-  console.log(id,' where is this')
-    $.post(`/stories/${id}`, $(this).serialize())
+    $.post(`/stories/additions/${id}`, $(this).serialize())
     .fail(() => {
-      console.error("Ajax .post Error");
+      console.error("Ajax .post Error or here?");
     })
       .then(() => {
-        loadContributions();
+        loadContributions(id);
+        $('#add-text').val("");
+        $(`.new-add`).slideToggle(250);
+
       });
 };
 
@@ -208,7 +222,7 @@ const renderStories = function(res) {
   $(`#story-container`).empty();
   for (let story of res.stories) {
     $('#story-container').append(createStoryElement(story));
-
+    $("html").animate({ scrollBottom: 100}, 'fast');
   }
   }
 
@@ -222,12 +236,14 @@ const renderStories = function(res) {
 
 //FORM CURRENT RATING INTO HTML
 const createCounter = function(data) {
+
   const counter = `<div id="vaiableCounter">${data.contribution[0].rating}</div>`
   return counter;
 };
 
 //GET CURRENT CONTRIBUTION RATING
 const loadRatingCounter = function(event) {
+
   $.getJSON(`/users/rating/${event}`, function(data) {
     $(`#${data.contribution[0].id}.ratingCounter`).empty();
     $(`#${data.contribution[0].id}.ratingCounter`).prepend(createCounter(data));
@@ -253,7 +269,6 @@ const submitLike = function(event) {
 const submitDislike = function(event) {
   event.preventDefault();
   const id = event.currentTarget.id
-  console.log(id)
   $.post(`/users/dislike/${id}`, $(this).serialize())
   .fail(() => {
     console.error("Ajax .post Error here");
@@ -266,3 +281,4 @@ const submitDislike = function(event) {
 //
 // END OF LIKE/DISLIKE FUNCTION
 //
+

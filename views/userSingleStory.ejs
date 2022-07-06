@@ -54,7 +54,7 @@
       </div>
       <section class="new-add">
         <div class="addText">
-          <form id="<% stories.story[0].title %>" class="addContribution" action="/stories/<% stories.story[0].id %>" method="POST">
+          <form id="<% stories.story[0].id %>" class="addContribution" action="/stories/<% stories.story[0].id %>" method="POST">
             <textarea name="text" id="add-text" placeholder="Continue the story"></textarea>
         </div>
         <footer>
@@ -79,7 +79,10 @@
               <i class="fa-solid fa-flag report"></i>
               <div class="rating">
                 <form class="submit" action="/users/like/<%= contribution.id  %>" method="POST">
-                <button id="<%= contribution.id  %>" class="fa-solid fa-arrow-up vote"></button><span id="<%= contribution.id  %>" class="ratingCounter" ><div id="vaiableCounter"> <%= contribution.rating  %></div></span></form>
+                <button id="<%= contribution.id  %>" class="fa-solid fa-arrow-up vote"></button>
+                <span id="<%= contribution.id  %>" class="ratingCounter" >
+                  <div id="vaiableCounter"> <%= contribution.rating  %>
+                  </div></span></form>
                 <form id="<%= contribution.id  %>" class="submit" action="/users/dislike/<%= contribution.id  %>"" method="POST">
                 <button id="<%= contribution.id  %>"class="fa-solid fa-arrow-down vote"></i></form>
               </div>

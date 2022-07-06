@@ -9,6 +9,7 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
+  //REQUEST STORY LIST PAGE
   router.get("/", (req, res) => {
     let query = `SELECT * FROM stories ORDER BY creation_time LIMIT 3;`;
     db.query(query)
@@ -22,7 +23,7 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
+  //REQUEST 3 STORIES DOWN
   router.get("/listdown/:id", (req, res) => {
     const offset = Number(req.params.id)
     let query = `SELECT * FROM stories ORDER BY creation_time LIMIT 3 OFFSET $1;`;
@@ -37,7 +38,7 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
+  //REQUEST 3 STORIES UP
   router.get("/listup/:id", (req, res) => {
     const offset = Number(req.params.id)
     let query = `SELECT * FROM stories ORDER BY creation_time LIMIT 3 OFFSET $1;`;
@@ -53,13 +54,13 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
+  //REQUEST SPECIFIC STORY PAGE
   router.get("/:id", (req, res) => {
     let userID = req.session.user_id
     let storyID = req.params.id
     let stories = {}
     let query = `SELECT * FROM stories WHERE stories.id = $1;`;
-    let query2 = `SELECT * FROM contributions WHERE story_id = $1 ORDER BY id;`;
+    let query2 = `SELECT * FROM contributions WHERE story_id = $1 ORDER BY id DESC;`;
     db.query(query, [storyID])
     .then((data) => {
       stories['story'] = data.rows;
@@ -78,17 +79,30 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
-
-
-  router.post("/:id", (req, res) => {
-    const addition = req.body.text
-    const story_id = req.params.id
-    contribution = [story_id, addition]
-    let query = `INSERT INTO contributions (story_id, additions)
-    VALUES $1, $2;`;
-    db.query(query, [contribution])
+  //GET LIST OF CONTRIBUTIONS
+  router.get("/additions/:id", (req, res) => {
+    const story_id = Number(req.params.id)
+    let query = `SELECT * FROM contributions WHERE story_id = $1 ORDER BY id;`;
+    db.query(query, [story_id])
       .then(data => {
+        const contributions = data.rows;
+        res.json({ contributions });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+  //POST NEW CONTRIBUTION
+  router.post("/additions/:id", (req, res) => {
+    const story_id = Number(req.params.id)
+    const addition = req.body.text
+    let query = `INSERT INTO contributions (story_id, additions)
+    VALUES ($1, $2) RETURNING *;`;
+    db.query(query, [story_id, addition])
+      .then(data => {
+        console.log(data.rows, "one here")
         const contribution = data.rows;
         res.json( {contribution} )
       })
@@ -98,6 +112,8 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
     })
+
+
 
   return router;
 };
