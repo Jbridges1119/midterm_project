@@ -15,8 +15,8 @@ DONE GET    /users/                   ~Request list of owners stories
 DONE GET    /users/:id                ~Request owners specific story
 DONE GET    /users/:listup            ~Request 3 of owners stories (object) - ajax
 DONE GET    /users/:listdown          ~Request 3 of owners stories (object) - ajax
-POST        /users/story/add/:id      ~Add specific contribution and continue story
-POST        /users/story/end/:id      ~Add specific contribution and end story
+DONE POST   /users/story/add/:id      ~Add specific contribution and continue story
+DONE POST   /users/story/end/:id      ~Add specific contribution and end story
 DONE POST   /users/like/:id           ~Add 1 to contribution rating - ajax
 DONE POST   /users/dilike/:id         ~Remove 1 from contribution rating - ajax
 DONE GET    /users/rating/:id         ~Request rating for specific addition - ajax

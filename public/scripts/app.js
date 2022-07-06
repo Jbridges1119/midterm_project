@@ -206,40 +206,77 @@ const submitNewAdd = function(event) {
 //
 // STORY LIST PAGE
 //
-const createStoryElement = function(data) {
+const createStoryElement = function(data, res) {
+  const notFinished = `<a href="/stories/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
+  <div   class="storyFinished alone">In Progress</div></a>`
+
+  const ownerNotFinished = `<a href="/stories/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
+  <img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
+  <div   class="storyFinished">In Progress</div></article></a>`
+
+  const finished =
+  `<a href="/stories/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
+  <div   class="storyFinished alone">Complete</div></a>`
+
+  const ownerFinished = `<a href="/stories/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
+  <article class="userBottom"><img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
+  <div   class="storyFinished">Complete</div></article></a>`
 
   if(!data.completed) {
-    const notFinished = `<a href="/stories/${data.id}"  class="storyStamp">${data.title}<div class="desc">${data.content.substring(0, 150) + "..."}</div><div   class="storyFinished">In Progress</div></a>`
-    return notFinished;
+      if (data.owner_id == res.user_id) {
+        console.log(data.owner_id,res.user_id)
+       return ownerNotFinished
+      }
+      return notFinished;
   }
-  const stories =
-  `<a href="/stories/${data.id}"  class="storyStamp">${data.title}<div class="desc">${data.content.substring(0, 150) + "..."}</div><div   class="storyFinished">Complete</div></a>`
-  return stories;
+  if (data.owner_id == res.user_id) {
+    return ownerFinished
+   }
+   return finished;
 };
 
 
 const renderStories = function(res) {
   $(`#story-container`).empty();
   for (let story of res.stories) {
-    $('#story-container').append(createStoryElement(story));
+    $('#story-container').append(createStoryElement(story,res.userID));
     $("html").animate({ scrollBottom: 100}, 'fast');
   }
   }
 
-  const createOwnerStoryElement = function(data) {
+  const createOwnerStoryElement = function(data, res) {
+    const notFinished = `<a href="/users/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
+    <div   class="storyFinished alone">In Progress</div></a>`
+
+    const ownerNotFinished = `<a href="/users/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
+    <article class="userBottom"><img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
+    <div   class="storyFinished">In Progress</div></article></a>`
+
+    const finished =
+    `<a href="/users/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
+    <div   class="storyFinished alone">Complete</div></a>`
+
+    const ownerFinished = `<a href="/users/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
+    <article class="userBottom"><img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
+    <div   class="storyFinished">Complete</div></article></a>`
+
     if(!data.completed) {
-      const notFinished = `<a href="/users/${data.id}"  class="storyStamp">${data.title}<div class="desc">${data.content.substring(0, 150) + "..."}</div><div   class="storyFinished">In Progress</div></a>`
-      return notFinished;
+        if (data.owner_id == res.user_id) {
+          console.log(data.owner_id,res.user_id)
+         return ownerNotFinished
+        }
+        return notFinished;
     }
-    const stories =
-    `<a href="/users/${data.id}"  class="storyStamp">${data.title}<div class="desc">${data.content.substring(0, 150) + "..."}</div><div   class="storyFinished">Complete</div></a>`
-    return stories;
+    if (data.owner_id == res.user_id) {
+      return ownerFinished
+     }
+     return finished;
   };
 
   const renderOwnerStories = function(res) {
     $(`#story-container`).empty();
     for (let story of res.stories) {
-      $('#story-container').append(createOwnerStoryElement(story));
+      $('#story-container').append(createOwnerStoryElement(story,res.userID));
       $("html").animate({ scrollBottom: 100}, 'fast');
     }
     }

@@ -34,7 +34,7 @@ module.exports = (db) => {
     db.query(query, [userID.user_id, offset])
       .then(data => {
         const stories = data.rows;
-        res.json({ stories });
+        res.json({ stories, userID });
       })
       .catch(err => {
         res
@@ -51,7 +51,7 @@ module.exports = (db) => {
     db.query(query, [userID.user_id, offset])
       .then(data => {
         const stories = data.rows;
-        res.json({ stories });
+        res.json({ stories, userID });
       })
       .catch(err => {
         res
@@ -59,8 +59,7 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-  // POST        /users/story/add/:id      ~Add specific contribution and continue story
-  // POST        /users/story/end/:id
+
   router.post("/add/:id", (req, res) => {
     let contributionID = req.params.id
     let query = 'SELECT * FROM contributions JOIN stories ON story_id = stories.id WHERE contributions.id = $1;'
@@ -83,6 +82,7 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
     })
+
     router.post("/end/:id", (req, res) => {
       let contributionID = req.params.id
       let query = 'SELECT * FROM contributions JOIN stories ON story_id = stories.id WHERE contributions.id = $1;'
