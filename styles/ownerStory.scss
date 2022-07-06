@@ -9,7 +9,6 @@ body {
   color: $textColor;
 
   #myStory {
-
     box-shadow: 0 6px 8px rgba(102, 95, 82, 0.2);
     outline: none;
     border-radius: 4px;
@@ -114,6 +113,7 @@ body {
 
     footer {
       form {
+        display: flex;
         height: 100%;
       }
 
@@ -226,7 +226,6 @@ body {
         }
 
         i.report {
-          margin-right: 39px;
           color: darkred;
           transition-duration: .2s;
           transition-timing-function: ease-in-out;
@@ -274,7 +273,6 @@ div.hidden {
   height: 80px;
   width: 80px;
   background-color: $interactableColour;
-  // background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-dark.png");
   position: fixed;
   bottom: 300px;
   right: 25px;
@@ -326,10 +324,169 @@ div.hidden {
   box-shadow: 0 10px 5px rgba(102, 95, 82, 0.2);
 }
 
+div.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button.showText {
+  border-radius: 4px;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
+  padding: 16px;
+  margin-block: 20px;
+  width: 300px;
+  background-color: #4d693f;
+  color: #fff;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  margin-inline: .75rem;
+}
+
+button.showText:hover {
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  box-shadow: 0 4px 6px rgba(102, 95, 82, 0.3);
+  transform: translateY(-2px);
+  background-color: #678c54;
+  color: #fff;
+}
+
+button.showText:active {
+  background-color: #4d693f;
+  box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
+  transform: translateY(0.05em);
+}
+
+section.new-add {
+  font-size: 1.5rem;
+  display: none
+}
+
+div.addText {
+  display: flex;
+  flex-direction: column;
+  height: 168px;
+  margin: 0;
+
+}
+
+#add-text {
+  border: 2px solid transparent;
+  box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
+  outline: none;
+  border-radius: 4px;
+  width: 100%;
+  padding: 16px;
+  height: 200%;
+  letter-spacing: 0.2px;
+  font-size: 1.3rem;
+  resize: none;
+  transition-duration: .1s;
+  transition-timing-function: ease-in-out;
+  font-family: $font-family;
+
+  &:hover {
+    @include boxHover;
+
+  }
+
+  &:focus {
+    @include boxFocus;
+  }
+
+}
+
+section button.addButton {
+  border-radius: 4px;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
+  padding: 8px;
+  margin-block: 20px;
+  width: 200px;
+  background-color: #4d693f;
+  color: #fff;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  margin-inline: .75rem;
+}
+
+section button.addButton:hover {
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  box-shadow: 0 4px 6px rgba(102, 95, 82, 0.3);
+  transform: translateY(-2px);
+  background-color: #678c54;
+  color: #fff;
+}
+
+section button.addButton:active {
+  background-color: #4d693f;
+  box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
+  transform: translateY(0.05em);
+}
+
+
 div.theEnd {
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 3.5rem;
       font-weight: 700;
+}
+
+
+#vaiableCounter {
+  text-align: center;
+  width:24px;
+  align-items: center;
+  text-align: end;
+}
+button.add {
+
+  border-radius: 4px;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  text-align: center;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
+  padding: 8px;
+  margin-bottom: 5px;
+  width: 200px;
+  background-color: #4d693f;
+  color: #fff;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  margin-inline: .75rem;
+
+  &:hover {
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
+    box-shadow: 0 4px 6px rgba(102, 95, 82, 0.3);
+    transform: translateY(-2px);
+    background-color: #678c54;
+    color: #fff;
+  }
+
+  &:active {
+    background-color: #4d693f;
+    box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
+    transform: translateY(0.05em);
+  }
 }

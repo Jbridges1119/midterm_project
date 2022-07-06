@@ -38,59 +38,60 @@
   <%- include('partials/_header') %>
     <main>
       <div id="myStory">
-        <p class="title"><%= stories.title  %></p>
-        <p><%= stories.content  %></p>
+        <p class="title"><%= stories.story[0].title  %></p>
+        <p><%= stories.story[0].content  %></p>
         <footer>
-
           <div class="icons">
             <i class="fa-solid fa-flag report"></i>
           </div>
         </footer>
       </div>
+      <% if(stories.story[0].completed) { %>
+<div class="theEnd">The End</div>
+  <% } else {%>
 
-      <% if(story is finished) { %>
-        <div class="theEnd">The End</div>
-          <% } %>
-          <%  else { %>
       <div class="border"></div>
       <% } %>
 
-
       <section id="contribution-container">
-              <!-- Contribution history fills here -->
-              <% if(contributions) { %>
-                <% for(let contribution in contributions) { %>
-      <div class="contribution">
-          <input type="hidden" >
-        <p><%= addition  %></p>
-        <footer>
-          <div class="icons">
-            <i class="fa-solid fa-flag report"></i>
-            <div class="select">
-              <form class="submit" action="/users/<%= :id  %>" method="POST">
-              <button class="add" type="submit">Continue</button>
-            </form>
-            <form class="submit" action="/users/end/<%= :id  %>" method="POST">
-              <button class="add" type="submit">The end</button>
-            </form>
+        <!-- Contribution history fills here -->
+        <% if(stories.contributions.length) { %>
+          <% for(let contribution of stories.contributions) { %>
+        <div class="contribution">
+            <input type="hidden" >
+          <p><%= contribution.additions  %></p>
+          <footer>
+            <div class="icons">
+              <i class="fa-solid fa-flag report"></i>
+              <div class="select">
+                <form class="submit" id="<%= stories.story[0].id  %>"action="/users/add/<%= contribution.id  %>" method="POST">
+                <button class="add" type="submit">Continue</button>
+                </form>
+                <form class="submit" action="/users/end/<%= contribution.id  %>" method="POST">
+                <button class="add" type="submit">The end</button>
+                </form>
+                </div>
+              <div class="rating">
+                <form class="submit" action="/users/like/<%= contribution.id  %>" method="POST">
+                <button id="<%= contribution.id  %>" class="fa-solid fa-arrow-up vote"></button>
+                <span id="<%= contribution.id  %>" class="ratingCounter" >
+                  <div id="vaiableCounter"> <%= contribution.rating  %>
+                  </div></span></form>
+                <form id="<%= contribution.id  %>" class="submit" action="/users/dislike/<%= contribution.id  %>"" method="POST">
+                <button id="<%= contribution.id  %>"class="fa-solid fa-arrow-down vote"></i></form>
+              </div>
             </div>
-            <div class="rating">
-              <form class="submit" action="/users/like/<%= :id  %>" method="POST">
-              <button class="fa-solid fa-arrow-up vote"></button><span class="rating-<%= :id  %>"><%= rating  %></span></form>
-              <form class="submit" action="/users/dislike/<%= :id  %>" method="POST">
-              <button class="fa-solid fa-arrow-down vote"></i></form>
-            </div>
-          </div>
-        </footer>
-      </div>
-      <% } %>
-      <% } %>
-    </section>
+          </footer>
+        </div>
+        <% } %>
+        <% } %>
+      </section>
       <div class="bottom"></div>
     </main>
     <div class="hidden">
       <a href="" class="scrollTop"><i class="fa-solid fa-angles-up"></i></a>
     </div>
+  </section>
 </body>
-<%- include('partials/_footer') %>
+<!-- <%- include('partials/_footer') %> -->
 </html>

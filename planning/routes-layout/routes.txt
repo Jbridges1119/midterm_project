@@ -1,23 +1,22 @@
-GET        /login                     ~REQUEST LOGIN PAGE -- STRETCH
 DONE GET   /login/:id                 ~Request login cookie
 
-DONE GET   /                          ~Redirect to /stories
+DONE GET   /                          ~Redirect to /stories  -- Stretch -- Landing page
 DONE GET   /stories/                  ~Request story list page
 DONE GET   /stories/listup/:id        ~Request 3 stories (object) - ajax
 DONE GET   /stories/listdown/:id      ~Request 3 stories (object) - ajax
 DONE GET   /stories/:id               ~Request specific story page
-GET        /stories/new               ~Request create story page
-POST       /stories/new               ~Create new story
+DONE GET   /stories/new               ~Request create story page
+DONE POST  /stories/new               ~Create new story
 DONE POST  /stories/additions/:id     ~Create new contribution - ajax
 DONE GET   /Stories/additions/:id     ~Request list of contributions
 
 
 DONE GET    /users/                   ~Request list of owners stories
-GET         /users/:id                ~Request owners specific story
+DONE GET    /users/:id                ~Request owners specific story
 DONE GET    /users/:listup            ~Request 3 of owners stories (object) - ajax
 DONE GET    /users/:listdown          ~Request 3 of owners stories (object) - ajax
 POST        /users/story/add/:id      ~Add specific contribution and continue story
 POST        /users/story/end/:id      ~Add specific contribution and end story
-DONE  POST  /users/like/:id           ~Add 1 to contribution rating - ajax
-DONE  POST  /users/dilike/:id         ~Remove 1 from contribution rating - ajax
-DONE  GET   /users/rating/:id         ~Request rating for specific addition - ajax
+DONE POST   /users/like/:id           ~Add 1 to contribution rating - ajax
+DONE POST   /users/dilike/:id         ~Remove 1 from contribution rating - ajax
+DONE GET    /users/rating/:id         ~Request rating for specific addition - ajax

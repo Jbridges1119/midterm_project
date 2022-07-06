@@ -56,7 +56,7 @@ $("a.toggleOwnerRight").click(function(event) {
       offset -= 3
       return $('.caro').effect( "bounce", {direction:'right',distance:15, times:3}, 150 );
       }
-      renderStories(res);
+      renderOwnerStories(res);
    })
   .fail(() => {
      console.error("Ajax .get Error");
@@ -69,7 +69,7 @@ $("a.toggleOwnerLeft").click(function(event) {
     }
   offset -= 3
   $.getJSON(`/users/listup/${offset}`, function(res) {
-    renderStories(res);
+    renderOwnerStories(res);
   })
   .fail(() => {
     console.error("Ajax .get Error");
@@ -226,6 +226,24 @@ const renderStories = function(res) {
   }
   }
 
+  const createOwnerStoryElement = function(data) {
+    if(!data.completed) {
+      const notFinished = `<a href="/users/${data.id}"  class="storyStamp">${data.title}<div class="desc">${data.content.substring(0, 150) + "..."}</div><div   class="storyFinished">In Progress</div></a>`
+      return notFinished;
+    }
+    const stories =
+    `<a href="/users/${data.id}"  class="storyStamp">${data.title}<div class="desc">${data.content.substring(0, 150) + "..."}</div><div   class="storyFinished">Complete</div></a>`
+    return stories;
+  };
+
+  const renderOwnerStories = function(res) {
+    $(`#story-container`).empty();
+    for (let story of res.stories) {
+      $('#story-container').append(createOwnerStoryElement(story));
+      $("html").animate({ scrollBottom: 100}, 'fast');
+    }
+    }
+
 //
 //  END OF STORY LIST PAGE
 //
@@ -236,14 +254,12 @@ const renderStories = function(res) {
 
 //FORM CURRENT RATING INTO HTML
 const createCounter = function(data) {
-
   const counter = `<div id="vaiableCounter">${data.contribution[0].rating}</div>`
   return counter;
 };
 
 //GET CURRENT CONTRIBUTION RATING
 const loadRatingCounter = function(event) {
-
   $.getJSON(`/users/rating/${event}`, function(data) {
     $(`#${data.contribution[0].id}.ratingCounter`).empty();
     $(`#${data.contribution[0].id}.ratingCounter`).prepend(createCounter(data));
