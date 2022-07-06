@@ -62,26 +62,55 @@ module.exports = (db) => {
   // POST        /users/story/add/:id      ~Add specific contribution and continue story
   // POST        /users/story/end/:id
   router.post("/add/:id", (req, res) => {
-    let storyID = res.body
-    console.log(req)
     let contributionID = req.params.id
-    let contribution = ""
-    let query = `SELECT additions FROM contributions WHERE id = $1`;
-    let query2 = `SELECT content FROM stories WHERE `
-    db.query(query, [contributionID])
+    let query = 'SELECT * FROM contributions JOIN stories ON story_id = stories.id WHERE contributions.id = $1;'
+    let query2 = 'UPDATE stories SET content = $1 WHERE id = $2'
+    let query3 = 'DELETE FROM contributions WHERE story_id = $1'
+        db.query(query, [contributionID])
       .then(data => {
-        let contribution = data.rows[0].additions;
-
-        // db.query(query, [contributionID])
-
-        // res.redirect( {contribution} )
-      })
+        let contribution = data.rows[0];
+        const newContent = contribution.content +" " + contribution.additions
+        const story = contribution.story_id
+        db.query(query2, [newContent,story])
+        .then(data => {
+          let storyis = contribution.story_id
+          db.query(query3, [contribution.story_id])
+          .then(data => {
+            res.redirect(`/users/${storyis}`);
+      }) })})
       .catch(err => {
         res
           .json({ error: err.message });
       });
     })
+    router.post("/end/:id", (req, res) => {
+      let contributionID = req.params.id
+      let query = 'SELECT * FROM contributions JOIN stories ON story_id = stories.id WHERE contributions.id = $1;'
+      let query2 = 'UPDATE stories SET content = $1 WHERE id = $2'
+      let query3 = 'DELETE FROM contributions WHERE story_id = $1'
+      let query4 = `UPDATE stories SET completed = $1 WHERE id = $2`
+          db.query(query, [contributionID])
+        .then(data => {
+          let contribution = data.rows[0];
+          const newContent = contribution.content +" "+ contribution.additions
+          const story = contribution.story_id
+          db.query(query2, [newContent,story])
+          .then(data => {
+            let storyid = contribution.story_id
+            db.query(query3, [storyid])
+            .then(data => {
+              db.query(query4, [true,storyid])
+              .then(data => {
+              res.redirect(`/users/${storyid}`);
+        }) })})})
+        .catch(err => {
+          res
+            .json({ error: err.message });
+        });
+      })
 
+    // DELETE FROM table_name
+    // WHERE condition of which row(s) to delete;
     // router.post("/end/:id", (req, res) => {
     //   let contributionID = req.params.id
     //   let query = `UPDATE contributions SET rating = rating + 1 WHERE id = $1 RETURNING rating, id;`;

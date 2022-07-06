@@ -72,7 +72,7 @@ div.caro{
           transform: translateY(0.05em);
   }
   div.storyFinished{
-    background-color: darken($background-colour, 2%);
+    background-color: darken($background-colour, 0%);
     border: 2px solid transparent;
     box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
     outline: none;
@@ -81,7 +81,7 @@ div.caro{
     letter-spacing: 0.2px;
   }
   div.storyInProgress {
-    background-color: darken($background-colour, 2%);
+    background-color: darken($background-colour, 0%);
     border: 2px solid transparent;
     box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
     outline: none;
@@ -97,8 +97,15 @@ div.caro{
   font-size: 3.5rem;
   color: lighten(#f5f3f0, 3%);
 
-
 }
+.toggleOwnerRight:hover .fa-angles-right {
+  animation: bounce-2 1s;
+  animation-iteration-count: infinite;
+  }
+.toggleOwnerLeft:hover .fa-angles-left {
+  animation: bounce-2 1s;
+  animation-iteration-count: infinite;
+  }
 .toggleOwnerLeft {
   text-decoration: none;
   display:flex;
@@ -172,6 +179,7 @@ div.desc{
     transition-timing-function: ease-in-out;
     box-shadow: 0 4px 6px rgba(102, 95, 82, 0.3);
     transform: translateY(-2px);
+
   }
 
   &:active {
@@ -186,13 +194,13 @@ div.desc{
 
 
 
-// @keyframes bounce-2 {
+@keyframes bounce-2 {
 
-//   0% { transform: translate(0,  0px); }
-//   50%  { transform: translate(0, -8px); }
-//   100%   { transform: translate(0, -0px); }
+  0% { transform: translate(0,  0px); }
+  50%  { transform: translate(-10px, 0px); }
+  100%   { transform: translate(0, -0px); }
 
-// }
+}
 
 
 

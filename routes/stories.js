@@ -16,7 +16,6 @@ module.exports = (db) => {
     db.query(query)
       .then(data => {
         const stories = data.rows;
-        console.log(stories)
         res.render('storyLists', {stories,userID})
       })
       .catch(err => {
@@ -83,7 +82,6 @@ module.exports = (db) => {
     VALUES ($1, $2) RETURNING *;`;
     db.query(query, [story_id, addition])
       .then(data => {
-        console.log(data.rows, "one here")
         const contribution = data.rows;
         res.json( {contribution} )
       })

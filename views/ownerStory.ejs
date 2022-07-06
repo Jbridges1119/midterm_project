@@ -42,7 +42,7 @@
         <p><%= stories.story[0].content  %></p>
         <footer>
           <div class="icons">
-            <i class="fa-solid fa-flag report"></i>
+            <!-- <i class="fa-solid fa-flag report"></i> -->
           </div>
         </footer>
       </div>
@@ -64,7 +64,7 @@
             <div class="icons">
               <i class="fa-solid fa-flag report"></i>
               <div class="select">
-                <form class="submit" id="<%= stories.story[0].id  %>"action="/users/add/<%= contribution.id  %>" method="POST">
+                <form class="submit <%= stories.story[0].id  %>" id="<%= stories.story[0].id  %>"action="/users/add/<%= contribution.id  %>" method="POST">
                 <button class="add" type="submit">Continue</button>
                 </form>
                 <form class="submit" action="/users/end/<%= contribution.id  %>" method="POST">
