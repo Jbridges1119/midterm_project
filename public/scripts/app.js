@@ -176,16 +176,16 @@ const loadContributions = function(id) {
 const submitNewAdd = function(event) {
   event.preventDefault();
   const string = event.currentTarget.baseURI
-  let numberString = '';
+  let id = '';
   for (let i = string.length - 1; i > 0; i--){
     if(string[i] === "/"){
       break
     } else {
-      numberString += string[i]
+      id += string[i]
     }
   }
-  numberString = numberString.split('').reverse().join('')
-  const id = string.charAt(string.length - 1)
+  id = id.split('').reverse().join('')
+  console.log(id)
     $.post(`/stories/additions/${id}`, $(this).serialize())
     .fail(() => {
       console.error("Ajax .post Error or here?");
@@ -211,7 +211,7 @@ const createStoryElement = function(data, res) {
   <div   class="storyFinished alone">In Progress</div></a>`
 
   const ownerNotFinished = `<a href="/stories/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
-  <img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
+  <article class="userBottom"><img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
   <div   class="storyFinished">In Progress</div></article></a>`
 
   const finished =

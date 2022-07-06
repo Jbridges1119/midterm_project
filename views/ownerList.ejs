@@ -42,7 +42,7 @@
       <a href="/stories/<%= 0%>" class="toggleOwnerLeft"><i class="fa-solid fa-angles-left arrows"></i></a>
       <div class="caro" id="story-container">
         <% for(let key of stories) { %>
-          <%if (!key.completed) {%>
+          <%if (key.completed) {%>
         <a href="/stories/<%= key['id']%>"  class="storyStamp"><div class="stampInfo"><div class="title"><%= key['title'] %></div><div class="desc"><%=key.content.substring(0, 160) + "..." %></div></div>
         <% if(key.owner_id == userID.user_id) {%>
           <article class="userBottom"><img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
