@@ -54,31 +54,7 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-  //REQUEST SPECIFIC STORY PAGE
-  router.get("/:id", (req, res) => {
-    let userID = req.session.user_id
-    let storyID = req.params.id
-    let stories = {}
-    let query = `SELECT * FROM stories WHERE stories.id = $1;`;
-    let query2 = `SELECT * FROM contributions WHERE story_id = $1 ORDER BY id DESC;`;
-    db.query(query, [storyID])
-    .then((data) => {
-      stories['story'] = data.rows;
-      // if(userID == stories.story[0].owner_id) {
-      //   return res.redirect(`/users/${storyID}`)
-      //   }
-      db.query(query2, [storyID])
-      .then((data2) => {
-        stories['contributions'] = data2.rows;
-        res.render('userSingleStory', {stories})
-      })
-    })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
+
   //GET LIST OF CONTRIBUTIONS
   router.get("/additions/:id", (req, res) => {
     const story_id = Number(req.params.id)
@@ -113,7 +89,68 @@ module.exports = (db) => {
       });
     })
 
+    //REQUEST CREATE STORY PAGE
+  router.get("/newStory", (req, res) => {
+      let userID = req.session.user_id
+      let query = `SELECT * FROM users WHERE users.id = $1;`;
+      db.query(query, [userID])
+        .then(data => {
+          const stories = data.rows;
+          res.render('createStory', {stories})
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
+    });
 
+    //CREATE NEW STORY
+  router.post("/newStory", (req, res) => {
+      const owner_id = req.session.user_id
+      const creation_time = new Date
+      const title = req.body.title
+      const content = req.body.text
+      const completed = false
+      let query = `INSERT INTO stories (owner_id, creation_time, title, content, completed)
+      VALUES ($1, $2, $3, $4, $5) RETURNING *;`;
+      db.query(query, [owner_id, creation_time, title, content, completed])
+        .then(data => {
+          console.log(data.rows, "one here")
+          const contribution = data.rows;
+          res.redirect(`/stories/${data.rows[0].id}`)
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
+      })
 
+  //REQUEST SPECIFIC STORY PAGE
+  router.get("/:id", (req, res) => {
+    let userID = req.session.user_id
+    let storyID = req.params.id
+    let stories = {}
+    let query = `SELECT * FROM stories WHERE stories.id = $1;`;
+    let query2 = `SELECT * FROM contributions WHERE story_id = $1 ORDER BY id DESC;`;
+    db.query(query, [storyID])
+    .then((data) => {
+      stories['story'] = data.rows;
+      // if(userID == stories.story[0].owner_id) {
+      //   return res.redirect(`/users/${storyID}`)
+      //   }
+      db.query(query2, [storyID])
+      .then((data2) => {
+        stories['contributions'] = data2.rows;
+        res.render('userSingleStory', {stories})
+      })
+    })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
   return router;
 };
