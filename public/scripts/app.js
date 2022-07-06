@@ -10,8 +10,8 @@ $(document).ready(function() {
   $(window).scroll(storyStaysAtTop);
 
   //RED FLAG STAYS BRIGHT WHEN CLICKED
-  $("i.report").click(report);
-
+  // $("i.report").click(report);
+  $(document).on('click', 'i.report', report)
   //SUBMIT TEXT TO ADD TO STORY
   $("form.addContribution").submit(submitNewAdd);
 
@@ -75,9 +75,9 @@ $("a.toggleOwnerLeft").click(function(event) {
     console.error("Ajax .get Error");
   });
 })
-$('button.fa-arrow-up').click(submitLike)
+$(document).on('click', 'button.fa-arrow-up',submitLike)
 
-$('button.fa-arrow-down').click(submitDislike)
+$(document).on('click', 'button.fa-arrow-down',submitDislike)
 
 
 })
