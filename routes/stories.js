@@ -67,7 +67,6 @@ module.exports = (db) => {
     db.query(query, [story_id])
       .then(data => {
         const contributions = data.rows;
-        console.log(contributions)
         res.json({ contributions, userID });
       })
       .catch(err => {
@@ -86,7 +85,6 @@ module.exports = (db) => {
     db.query(query, [story_id, userID,addition])
       .then(data => {
         const contribution = data.rows;
-        console.log('test', contribution)
         res.json( {contribution} )
       })
       .catch(err => {

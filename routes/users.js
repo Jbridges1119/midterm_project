@@ -69,7 +69,6 @@ module.exports = (db) => {
         db.query(query, [contributionID])
       .then(data => {
         let contribution = data.rows[0];
-        console.log(contribution)
         const newContent = contribution.content +" " + contribution.additions
         const story = contribution.story_id
         db.query(query2, [newContent,story])
@@ -89,7 +88,6 @@ module.exports = (db) => {
 
     router.post("/end/:id", (req, res) => {
       let contributionID = req.params.id
-      console.log(req.params)
       let query = 'SELECT * FROM contributions JOIN stories ON story_id = stories.id WHERE contributions.id = $1;'
       let query2 = 'UPDATE stories SET content = $1 WHERE id = $2;'
       let query3 = 'UPDATE contributions SET active = $1 WHERE story_id = $2;'
@@ -166,7 +164,6 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
     let userID = req.session
     let storyID = req.params.id
-    console.log(userID, storyID)
     let stories = {}
     let query = `SELECT title, content, completed, users.name, stories.id FROM stories JOIN users ON owner_id = users.id WHERE stories.id = $1 AND owner_id = $2;`;
     let query2 = `SELECT contributions.id, user_id, additions, rating, active, added, name FROM contributions JOIN users ON user_id = users.id WHERE story_id = $1  ORDER BY contributions.id DESC;`;

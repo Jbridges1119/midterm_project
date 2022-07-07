@@ -150,8 +150,6 @@ const createAdditionElement = function(data) {
 </div>
 </footer>
 </div>`
-
-console.log(contribution)
   return contribution;
 };
 
@@ -159,7 +157,6 @@ console.log(contribution)
 const renderContributions = function(data) {
   $(`#contribution-container`).empty();
   data.contributions.forEach(contribution => {
-    console.log(data)
     $('#contribution-container').prepend(createAdditionElement(contribution));
   });
 
@@ -167,7 +164,6 @@ const renderContributions = function(data) {
 
 const loadContributions = function(id) {
   $.getJSON(`/stories/additions/${id}`, function(res) {
-    console.log('another issue')
     renderContributions(res);
   })
   .fail(() => {
@@ -187,7 +183,7 @@ const submitNewAdd = function(event) {
     }
   }
   id = id.split('').reverse().join('')
-  console.log(id)
+
     $.post(`/stories/additions/${id}`, $(this).serialize())
     .fail(() => {
       console.error("Ajax .post Error or here?");
@@ -225,7 +221,6 @@ const createStoryElement = function(data, res) {
   <div   class="storyFinished">Complete</div></article></a>`
 
   if(!data.completed) {
-    console.log(data.owner_id,res.user_id)
       if (data.owner_id == res.user_id) {
 
        return ownerNotFinished
@@ -266,7 +261,6 @@ const renderStories = function(res) {
 
     if(!data.completed) {
         if (data.owner_id == res.user_id) {
-          console.log(data.owner_id,res.user_id)
          return ownerNotFinished
         }
         return notFinished;
@@ -315,7 +309,6 @@ const loadRatingCounter = function(event) {
 const submitLike = function(event) {
   event.preventDefault();
   const id = event.currentTarget.id
-  console.log(event)
   $.post(`/users/like/${id}`, $(this).serialize())
   .fail(() => {
     console.error("Ajax .post Error");
