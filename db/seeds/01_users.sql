@@ -1,8 +1,8 @@
 -- Users table seeds here (Example)
 INSERT INTO users (name, email, password)
-VALUES ('Alice R.', 'alice@mail.com', 'password'),
-('Joy F.', 'bod@mail.com', 'password'),
-('Bob R.', 'joy@mail.com', 'password'),
-('Steve B.', 'steve@mail.com', 'password'),
-('Yu A.', 'yu@mail.com', 'password'),
-('Damian K.', 'damian@mail.com', 'password');
+VALUES ('Alice', 'alice@mail.com', 'password'),
+('Kaitlyn', 'bod@mail.com', 'password'),
+('Bobby', 'joy@mail.com', 'password'),
+('Sarah', 'steve@mail.com', 'password'),
+('Zach', 'yu@mail.com', 'password'),
+('Damian', 'damian@mail.com', 'password');
