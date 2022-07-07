@@ -444,10 +444,54 @@ div.theEnd {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 3.5rem;
-      font-weight: 700;
+  font-size: 2.4rem;
+  font-weight: 700;
+
 }
 
+div.dot1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.4rem;
+      font-weight: 700;
+      animation: bounce-up 2s;
+      animation-iteration-count: infinite;
+}
+
+div.dot2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.4rem;
+      font-weight: 700;
+
+      animation: bounce-up 2s;
+      animation-iteration-count: infinite;
+      animation-delay:.27s;
+}
+
+div.dot3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.4rem;
+      font-weight: 700;
+
+      animation: bounce-up 2s;
+      animation-iteration-count: infinite;
+      animation-delay:.55s;
+}
+@keyframes bounce-up {
+  0%,
+  25%,
+  50%,
+  75%,
+  0% { transform: translate(0,  0px); }
+  50%  { transform: translate(0, -14px); }
+  100%   { transform: translate(0, -0px); }
+
+}
 
 #vaiableCounter {
   text-align: center;

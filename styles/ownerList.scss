@@ -78,7 +78,7 @@ div.caro{
           transform: translateY(0.05em);
   }
   div.storyFinished{
-    background-color: darken($background-colour, 2%);
+    background-color: darken($background-colour, 3%);
     border: 2px solid transparent;
     box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
     outline: none;
@@ -88,7 +88,7 @@ div.caro{
     letter-spacing: 0.2px;
   }
   div.storyInProgress {
-    background-color: darken($background-colour, 2%);
+    background-color: darken($background-colour, 3%);
     border: 2px solid transparent;
     box-shadow: 0 2px 4px rgba(102, 95, 82, 0.2);
     outline: none;
