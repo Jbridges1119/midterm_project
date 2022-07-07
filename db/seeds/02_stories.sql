@@ -25,7 +25,7 @@ VALUES
 ( 1, '2022-04-02',
 'Ow, my spirit!', 'After lunch they went to the reptile house. It was cool and dark in there, with lit windows all along the walls. Behind the glass, all sorts of lizards and snakes were crawling and slithering over bits of wood and stone. Dudley and Piers wanted to see huge, poisonous cobras and thick, man-crushing pythons.', TRUE),
 ( 6, '2022-08-01',
-'Vaporware irony', 'Hi. I`m Troy McClure. You may remember me from such self-help tapes as "Smoke Yourself Thin" and "Get Some Confidence, Stupid!" Remember the time he ate my goldfish? And you lied and said I never had goldfish. Then why did I have the bowl, Bart? *Why did I have the bowl?*', FALSE),
+'Vaporware irony', '"Out of the way, you,” he said, punching him in the ribs. Caught by surprise, he fell hard on the concrete floor. What came next happened so fast no one saw how it happened — one second, Piers and Dudley were leaning right up close to the glass, the next, they had leapt back with howls of horror.', FALSE),
 ( 1, '2022-04-02',
-'Food truck narwhal', '"Out of the way, you,” he said, punching him in the ribs. Caught by surprise, he fell hard on the concrete floor. What came next happened so fast no one saw how it happened — one second, Piers and Dudley were leaning right up close to the glass, the next, they had leapt back with howls of horror.', FALSE);
+'Food truck narwhal', 'Hi. I`m Troy McClure. You may remember me from such self-help tapes as "Smoke Yourself Thin" and "Get Some Confidence, Stupid!" Remember the time he ate my goldfish? And you lied and said I never had goldfish. Then why did I have the bowl, Bart? *Why did I have the bowl?****', FALSE);
 
