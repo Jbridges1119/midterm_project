@@ -139,13 +139,13 @@ const createAdditionElement = function(data) {
 <div class="icons">
   <i class="fa-solid fa-flag report"></i>
   <div class="rating">
-    <form class="submit" action="/users/like/${data.id}" method="POST">
-    <button id="${data.id}" class="fa-solid fa-arrow-up vote"></button>
+    <form class="submit" action="/users/dislike/${data.id}" method="POST">
+    <button id="${data.id}" class="fa-solid fa-arrow-down vote"></button>
     <span id="${data.id}" class="ratingCounter" >
       <div id="vaiableCounter"> ${data.rating}
       </div></span></form>
-    <form id="${data.id}" class="submit" action="/users/dislike/${data.id}"" method="POST">
-    <button id="${data.id}"class="fa-solid fa-arrow-down vote"></i></form>
+    <form id="${data.id}" class="submit" action="/users/like/${data.id}"" method="POST">
+    <button id="${data.id}"class="fa-solid fa-arrow-up vote"></i></form>
   </div>
 </div>
 </footer>
