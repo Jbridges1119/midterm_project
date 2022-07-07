@@ -534,3 +534,27 @@ button.add {
     transform: translateY(0.05em);
   }
 }
+
+.ending{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.endTitle {
+  letter-spacing: 0.2px;
+  font-size: 1.7rem;
+  margin-bottom: 0px;;
+}
+
+.endSecondTitle{
+  letter-spacing: 0.2px;
+  font-size: 1.4rem;
+  margin-bottom: 0px;
+}
+.storyUserNames {
+  letter-spacing: 0.2px;
+  font-size: 1.3rem;
+  margin-block: 10px;
+}
+

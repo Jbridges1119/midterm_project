@@ -47,16 +47,18 @@
         </footer>
       </div>
       <% if(stories.story[0].completed) { %>
+        <div class="ending">
 <div class="theEnd">The End</div>
 <div class="border"></div>
-<h3>Story Creator</h3><p><%=stories.story[0].name%></p>
-<h3>Contributors</h3>
+<h3 class="endTitle">Story Creator</h3><p class="storyUserNames"><%=stories.story[0].name%></p>
+<h3 class="endSecondTitle">Contributors</h3>
 
 <% for(let name of names) { %>
 
-<p><%= name.name %></p>
+<p class="storyUserNames"><%= name.name %></p>
 
 <% } %>
+</div>
   <% } else {%>
 
       <div class="border"></div>
