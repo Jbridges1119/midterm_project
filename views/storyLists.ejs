@@ -54,9 +54,9 @@
         <a href="/stories/<%= key['id']%>"  class="storyStamp"><div class="stampInfo"><div class="title"><%= key['title'] %></div><div class="desc"><%=key.content.substring(0, 160) + "..." %></div></div>
           <% if(key.owner_id == userID.user_id) {%>
             <article class="userBottom"><img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
-          <div   class="storyFinished">In Progress</div></article></a>
+          <div   class="storyInProgress">In Progress</div></article></a>
           <% } else {%>
-            <div   class="storyFinished alone">In Progress</div></a>
+            <div   class="storyInProgress alone">In Progress</div></a>
             <% } %>
         <% } %>
       <% } %>

@@ -47,7 +47,16 @@
         </footer>
       </div>
       <% if(stories.story[0].completed) { %>
-<div class="theEnd">The End</div>
+        <div class="theEnd">The End</div>
+        <div class="border"></div>
+        <h3>Story Creator</h3><p><%=stories.story[0].name%></p>
+        <h3>Contributors</h3>
+
+        <% for(let name of names) { %>
+
+        <p><%= name.name %></p>
+
+        <% }%>
   <% } else {%>
       <div class="show">
         <button class="showText" type="submit">continue the story</button>
@@ -65,12 +74,14 @@
         </form>
       </section>
       <div class="border"></div>
-      <% } %>
+
 
       <section id="contribution-container">
         <!-- Contribution history fills here -->
-        <% if(stories.contributions.length) { %>
+        <% if(stories.contributions.length && active.length) { %>
+
           <% for(let contribution of stories.contributions) { %>
+            <% if(contribution.active) { %>
         <div class="contribution">
             <input type="hidden" >
           <p><%= contribution.additions  %></p>
@@ -78,20 +89,24 @@
             <div class="icons">
               <i class="fa-solid fa-flag report"></i>
               <div class="rating">
-                <form class="submit" action="/users/like/<%= contribution.id  %>" method="POST">
-                <button id="<%= contribution.id  %>" class="fa-solid fa-arrow-up vote"></button>
+                <form class="submit" action="/users/dislike/<%= contribution.id  %>" method="POST">
+                <button id="<%= contribution.id  %>" class="fa-solid fa-arrow-down vote"></button>
                 <span id="<%= contribution.id  %>" class="ratingCounter" >
                   <div id="vaiableCounter"> <%= contribution.rating  %>
                   </div></span></form>
-                <form id="<%= contribution.id  %>" class="submit" action="/users/dislike/<%= contribution.id  %>"" method="POST">
-                <button id="<%= contribution.id  %>"class="fa-solid fa-arrow-down vote"></i></form>
+                <form id="<%= contribution.id  %>" class="submit" action="/users/like/<%= contribution.id  %>"" method="POST">
+                <button id="<%= contribution.id  %>"class="fa-solid fa-arrow-up vote"></i></form>
               </div>
             </div>
           </footer>
         </div>
+
+        <% } %>
         <% } %>
         <% } %>
       </section>
+          <% } %>
+
       <div class="bottom"></div>
     </main>
     <div class="hidden">

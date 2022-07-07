@@ -6,6 +6,7 @@
  */
 
 const express = require('express');
+const users = require('./users');
 const router  = express.Router();
 
 module.exports = (db) => {
@@ -62,10 +63,11 @@ module.exports = (db) => {
   router.get("/additions/:id", (req, res) => {
     let userID = req.session
     const story_id = Number(req.params.id)
-    let query = `SELECT * FROM contributions WHERE story_id = $1 ORDER BY id;`;
+    let query = `SELECT * FROM contributions WHERE story_id = $1 AND active = true ORDER BY id;`;
     db.query(query, [story_id])
       .then(data => {
         const contributions = data.rows;
+        console.log(contributions)
         res.json({ contributions, userID });
       })
       .catch(err => {
@@ -76,13 +78,15 @@ module.exports = (db) => {
   });
   //POST NEW CONTRIBUTION
   router.post("/additions/:id", (req, res) => {
+    let userID = req.session.user_id
     const story_id = Number(req.params.id)
     const addition = req.body.text
-    let query = `INSERT INTO contributions (story_id, additions)
-    VALUES ($1, $2) RETURNING *;`;
-    db.query(query, [story_id, addition])
+    let query = `INSERT INTO contributions (story_id, user_id, additions)
+    VALUES ($1, $2, $3);`;
+    db.query(query, [story_id, userID,addition])
       .then(data => {
         const contribution = data.rows;
+        console.log('test', contribution)
         res.json( {contribution} )
       })
       .catch(err => {
@@ -134,20 +138,29 @@ module.exports = (db) => {
     let userID = req.session
     let storyID = req.params.id
     let stories = {}
-    let query = `SELECT * FROM stories WHERE stories.id = $1;`;
-    let query2 = `SELECT * FROM contributions WHERE story_id = $1 ORDER BY id DESC;`;
+    let query = `SELECT title, content, completed, users.name, stories.id, owner_id FROM stories JOIN users ON owner_id = users.id WHERE stories.id = $1;`;
+    let query2 = `SELECT contributions.id, user_id, additions, rating, active, added, name FROM contributions JOIN users ON user_id = users.id WHERE story_id = $1  ORDER BY contributions.id DESC;`;
+    let query3 = `SELECT * FROM contributions WHERE story_id = $1 AND active = true;`
+    let query4 = `select distinct name from contributions join users on users.id = user_id where added = true and story_id = $1`
     db.query(query, [storyID])
     .then((data) => {
       stories['story'] = data.rows;
+
       if(userID.user_id == stories.story[0].owner_id) {
         return res.redirect(`/users/${storyID}`)
         }
       db.query(query2, [storyID])
       .then((data2) => {
         stories['contributions'] = data2.rows;
-        res.render('userSingleStory', {stories, userID})
+        db.query(query3, [storyID])
+        .then((data3) => {
+          const active = data3.rows;
+          db.query(query4, [storyID])
+          .then((data4) => {
+            const names = data4.rows
+        res.render('userSingleStory', {stories,names, active, userID})
       })
-    })
+    })})})
       .catch(err => {
         res
           .status(500)

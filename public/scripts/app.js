@@ -13,7 +13,7 @@ $(document).ready(function() {
   // $("i.report").click(report);
   $(document).on('click', 'i.report', report)
   //SUBMIT TEXT TO ADD TO STORY
-  $("form.addContribution").submit(submitNewAdd);
+  $(document).on('submit', "form.addContribution",submitNewAdd);
 
 //SLIDE BUTTON TO ADD TO A STORY
   $("button.showText").click(addSlideButton);
@@ -151,7 +151,7 @@ const createAdditionElement = function(data) {
 </footer>
 </div>`
 
-
+console.log(contribution)
   return contribution;
 };
 
@@ -159,6 +159,7 @@ const createAdditionElement = function(data) {
 const renderContributions = function(data) {
   $(`#contribution-container`).empty();
   data.contributions.forEach(contribution => {
+    console.log(data)
     $('#contribution-container').prepend(createAdditionElement(contribution));
   });
 
@@ -166,6 +167,7 @@ const renderContributions = function(data) {
 
 const loadContributions = function(id) {
   $.getJSON(`/stories/additions/${id}`, function(res) {
+    console.log('another issue')
     renderContributions(res);
   })
   .fail(() => {
@@ -208,11 +210,11 @@ const submitNewAdd = function(event) {
 //
 const createStoryElement = function(data, res) {
   const notFinished = `<a href="/stories/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
-  <div   class="storyFinished alone">In Progress</div></a>`
+  <div   class="storyInProgress alone">In Progress</div></a>`
 
   const ownerNotFinished = `<a href="/stories/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
   <article class="userBottom"><img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
-  <div   class="storyFinished">In Progress</div></article></a>`
+  <div   class="storyInProgress">In Progress</div></article></a>`
 
   const finished =
   `<a href="/stories/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
@@ -223,16 +225,18 @@ const createStoryElement = function(data, res) {
   <div   class="storyFinished">Complete</div></article></a>`
 
   if(!data.completed) {
+    console.log(data.owner_id,res.user_id)
       if (data.owner_id == res.user_id) {
-        console.log(data.owner_id,res.user_id)
+
        return ownerNotFinished
       }
       return notFinished;
-  }
+  } else {
   if (data.owner_id == res.user_id) {
     return ownerFinished
    }
    return finished;
+  }
 };
 
 
@@ -246,11 +250,11 @@ const renderStories = function(res) {
 
   const createOwnerStoryElement = function(data, res) {
     const notFinished = `<a href="/users/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
-    <div   class="storyFinished alone">In Progress</div></a>`
+    <div   class="storyInProgress alone">In Progress</div></a>`
 
     const ownerNotFinished = `<a href="/users/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
     <article class="userBottom"><img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
-    <div   class="storyFinished">In Progress</div></article></a>`
+    <div   class="storyInProgress">In Progress</div></article></a>`
 
     const finished =
     `<a href="/users/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
@@ -266,11 +270,12 @@ const renderStories = function(res) {
          return ownerNotFinished
         }
         return notFinished;
-    }
+    } else {
     if (data.owner_id == res.user_id) {
       return ownerFinished
      }
      return finished;
+    }
   };
 
   const renderOwnerStories = function(res) {
@@ -310,6 +315,7 @@ const loadRatingCounter = function(event) {
 const submitLike = function(event) {
   event.preventDefault();
   const id = event.currentTarget.id
+  console.log(event)
   $.post(`/users/like/${id}`, $(this).serialize())
   .fail(() => {
     console.error("Ajax .post Error");
