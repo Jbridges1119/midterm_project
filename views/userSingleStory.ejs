@@ -38,8 +38,12 @@
   <%- include('partials/_header') %>
     <main>
       <div id="myStory">
-        <p class="title"><%= stories.story[0].title  %></p>
-        <p><%= stories.story[0].content  %></p>
+        <p class="title">
+          <%= stories.story[0].title %>
+        </p>
+        <p>
+          <%= stories.story[0].content %>
+        </p>
         <footer>
           <div class="icons">
             <i class="fa-solid fa-flag report"></i>
@@ -49,70 +53,84 @@
       <% if(stories.story[0].completed) { %>
         <div class="theEnd">The End</div>
         <div class="border"></div>
-        <h3>Story Creator</h3><p><%=stories.story[0].name%></p>
+        <h3>Story Creator</h3>
+        <p>
+          <%=stories.story[0].name%>
+        </p>
         <h3>Contributors</h3>
 
         <% for(let name of names) { %>
 
-        <p><%= name.name %></p>
+          <p>
+            <%= name.name %>
+          </p>
 
-        <% }%>
-  <% } else {%>
-      <div class="show">
-        <button class="showText" type="submit">continue the story</button>
-      </div>
-      <section class="new-add">
-        <div class="addText">
-          <form id="<% stories.story[0].id %>" class="addContribution" action="/stories/<% stories.story[0].id %>" method="POST">
-            <textarea name="text" id="add-text" placeholder="Continue the story"></textarea>
-        </div>
-        <footer>
-          <button class="addButton" type="submit">submit</button>
-          <output name="counter" class="counter" for="add-text">
-          </output>
-        </footer>
-        </form>
-      </section>
-      <div class="border"></div>
-
-
-      <section id="contribution-container">
-        <!-- Contribution history fills here -->
-        <% if(stories.contributions.length && active.length) { %>
-
-          <% for(let contribution of stories.contributions) { %>
-            <% if(contribution.active) { %>
-        <div class="contribution">
-            <input type="hidden" >
-          <p><%= contribution.additions  %></p>
-          <footer>
-            <div class="icons">
-              <i class="fa-solid fa-flag report"></i>
-              <div class="rating">
-                <form class="submit" action="/users/dislike/<%= contribution.id  %>" method="POST">
-                <button id="<%= contribution.id  %>" class="fa-solid fa-arrow-down vote"></button>
-                <span id="<%= contribution.id  %>" class="ratingCounter" >
-                  <div id="vaiableCounter"> <%= contribution.rating  %>
-                  </div></span></form>
-                <form id="<%= contribution.id  %>" class="submit" action="/users/like/<%= contribution.id  %>"" method="POST">
-                <button id="<%= contribution.id  %>"class="fa-solid fa-arrow-up vote"></i></form>
+          <% }%>
+            <% } else {%>
+              <div class="show">
+                <button class="showText" type="submit">continue the story</button>
               </div>
-            </div>
-          </footer>
-        </div>
+              <section class="new-add">
+                <div class="addText">
+                  <form id="<% stories.story[0].id %>" class="addContribution"
+                    action="/stories/<% stories.story[0].id %>" method="POST">
+                    <textarea name="text" id="add-text" placeholder="Continue the story"></textarea>
+                </div>
+                <footer>
+                  <button class="addButton" type="submit">submit</button>
+                  <output name="counter" class="counter" for="add-text">
+                  </output>
+                </footer>
+                </form>
+              </section>
+              <div class="border"></div>
 
-        <% } %>
-        <% } %>
-        <% } %>
-      </section>
-          <% } %>
 
-      <div class="bottom"></div>
+              <section id="contribution-container">
+                <!-- Contribution history fills here -->
+                <% if(stories.contributions.length && active.length) { %>
+
+                  <% for(let contribution of stories.contributions) { %>
+                    <% if(contribution.active) { %>
+                      <div class="contribution">
+                        <input type="hidden">
+                        <p>
+                          <%= contribution.additions %>
+                        </p>
+                        <footer>
+                          <div class="icons">
+                            <i class="fa-solid fa-flag report"></i>
+                            <div class="rating">
+                              <form class="submit" action="/users/dislike/<%= contribution.id  %>" method="POST">
+                                <button id="<%= contribution.id  %>" class="fa-solid fa-arrow-down vote"></button>
+                                <span id="<%= contribution.id  %>" class="ratingCounter">
+                                  <div id="vaiableCounter">
+                                    <%= contribution.rating %>
+                                  </div>
+                                </span>
+                              </form>
+                              <form id="<%= contribution.id  %>" class="submit"
+                                action="/users/like/<%= contribution.id  %>"" method=" POST">
+                                <button id="<%= contribution.id  %>" class="fa-solid fa-arrow-up vote"></i>
+                              </form>
+                            </div>
+                          </div>
+                        </footer>
+                      </div>
+
+                      <% } %>
+                        <% } %>
+                          <% } %>
+              </section>
+              <% } %>
+
+                <div class="bottom"></div>
     </main>
     <div class="hidden">
       <a href="" class="scrollTop"><i class="fa-solid fa-angles-up"></i></a>
     </div>
-  </section>
+    </section>
 </body>
 <!-- <%- include('partials/_footer') %> -->
+
 </html>

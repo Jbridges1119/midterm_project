@@ -262,6 +262,7 @@ div.select {
 div.hidden {
   display: none
 }
+
 .scrollTop {
   opacity: 0.5;
   color: inherit;
@@ -454,9 +455,9 @@ div.dot1 {
   justify-content: center;
   align-items: center;
   font-size: 2.4rem;
-      font-weight: 700;
-      animation: bounce-up 2s;
-      animation-iteration-count: infinite;
+  font-weight: 700;
+  animation: bounce-up 2s;
+  animation-iteration-count: infinite;
 }
 
 div.dot2 {
@@ -464,11 +465,11 @@ div.dot2 {
   justify-content: center;
   align-items: center;
   font-size: 2.4rem;
-      font-weight: 700;
+  font-weight: 700;
 
-      animation: bounce-up 2s;
-      animation-iteration-count: infinite;
-      animation-delay:.27s;
+  animation: bounce-up 2s;
+  animation-iteration-count: infinite;
+  animation-delay: .27s;
 }
 
 div.dot3 {
@@ -476,29 +477,40 @@ div.dot3 {
   justify-content: center;
   align-items: center;
   font-size: 2.4rem;
-      font-weight: 700;
+  font-weight: 700;
 
-      animation: bounce-up 2s;
-      animation-iteration-count: infinite;
-      animation-delay:.55s;
+  animation: bounce-up 2s;
+  animation-iteration-count: infinite;
+  animation-delay: .55s;
 }
+
 @keyframes bounce-up {
+
   0%,
   25%,
   50%,
   75%,
-  0% { transform: translate(0,  0px); }
-  50%  { transform: translate(0, -14px); }
-  100%   { transform: translate(0, -0px); }
+  0% {
+    transform: translate(0, 0px);
+  }
+
+  50% {
+    transform: translate(0, -14px);
+  }
+
+  100% {
+    transform: translate(0, -0px);
+  }
 
 }
 
 #vaiableCounter {
   text-align: center;
-  width:24px;
+  width: 24px;
   align-items: center;
   text-align: end;
 }
+
 button.add {
 
   border-radius: 4px;
@@ -535,26 +547,28 @@ button.add {
   }
 }
 
-.ending{
+.ending {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .endTitle {
   letter-spacing: 0.2px;
   font-size: 1.7rem;
-  margin-bottom: 0px;;
+  margin-bottom: 0px;
+  ;
 }
 
-.endSecondTitle{
+.endSecondTitle {
   letter-spacing: 0.2px;
   font-size: 1.4rem;
   margin-bottom: 0px;
 }
+
 .storyUserNames {
   letter-spacing: 0.2px;
   font-size: 1.3rem;
   margin-block: 10px;
 }
-

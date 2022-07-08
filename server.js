@@ -57,13 +57,13 @@ app.use("/stories", storiesRoutes(db));
 
 
 app.get("/login/:id", (req, res) => {
-  req.session.user_id = req.params.id
+  req.session.user_id = req.params.id;
 
-    let query = 'SELECT * FROM users WHERE users.id = $1;'
-    db.query(query, [req.params.id])
+  let query = 'SELECT * FROM users WHERE users.id = $1;';
+  db.query(query, [req.params.id])
     .then(data => {
-      req.session['username'] = data.rows[0].name
-      res.redirect('/stories')
+      req.session['username'] = data.rows[0].name;
+      res.redirect('/stories');
     })
     .catch(err => {
       res
@@ -73,7 +73,7 @@ app.get("/login/:id", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.redirect("/stories")
+  res.redirect("/stories");
 });
 
 app.listen(PORT, () => {

@@ -11,76 +11,76 @@ $(document).ready(function() {
 
   //RED FLAG STAYS BRIGHT WHEN CLICKED
   // $("i.report").click(report);
-  $(document).on('click', 'i.report', report)
+  $(document).on('click', 'i.report', report);
   //SUBMIT TEXT TO ADD TO STORY
   $(document).on('submit', "form.addContribution",submitNewAdd);
 
-//SLIDE BUTTON TO ADD TO A STORY
+  //SLIDE BUTTON TO ADD TO A STORY
   $("button.showText").click(addSlideButton);
 
   //LIST PAGE TOGGLE BUTTONS
-  let offset = 0
+  let offset = 0;
   $("a.toggleRight").click(function(event) {
     event.preventDefault();
-  offset += 3
+    offset += 3;
     $.getJSON(`/stories/listdown/${offset}`, function(res) {
-      if(!res.stories.length) {
-        offset -= 3
-        return $('.caro').effect( "bounce", {direction:'right',distance:15, times:3}, 150 );
-        }
-        renderStories(res);
-     })
-    .fail(() => {
-       console.error("Ajax .get Error");
-    });
-  })
-  $("a.toggleLeft").click(function(event) {
-  event.preventDefault();
-  if(offset <= 0) {
-    return $('.caro').effect( "bounce", {direction:'right',distance:15, times:3}, 150 );
-    }
-  offset -= 3
-  $.getJSON(`/stories/listup/${offset}`, function(res) {
-    renderStories(res);
-  })
-  .fail(() => {
-    console.error("Ajax .get Error");
+      if (!res.stories.length) {
+        offset -= 3;
+        return $('.caro').effect("bounce", {direction:'right',distance:15, times:3}, 150);
+      }
+      renderStories(res);
+    })
+      .fail(() => {
+        console.error("Ajax .get Error");
+      });
   });
-})
-//OWNERS LIST PAGE TOGGLE BUTTONS - USES OFFSET
-$("a.toggleOwnerRight").click(function(event) {
-  event.preventDefault();
-  offset += 3
-  $.getJSON(`/users/listdown/${offset}`, function(res) {
-    if(!res.stories.length) {
-      offset -= 3
-      return $('.caro').effect( "bounce", {direction:'right',distance:15, times:3}, 150 );
+  $("a.toggleLeft").click(function(event) {
+    event.preventDefault();
+    if (offset <= 0) {
+      return $('.caro').effect("bounce", {direction:'right',distance:15, times:3}, 150);
+    }
+    offset -= 3;
+    $.getJSON(`/stories/listup/${offset}`, function(res) {
+      renderStories(res);
+    })
+      .fail(() => {
+        console.error("Ajax .get Error");
+      });
+  });
+  //OWNERS LIST PAGE TOGGLE BUTTONS - USES OFFSET
+  $("a.toggleOwnerRight").click(function(event) {
+    event.preventDefault();
+    offset += 3;
+    $.getJSON(`/users/listdown/${offset}`, function(res) {
+      if (!res.stories.length) {
+        offset -= 3;
+        return $('.caro').effect("bounce", {direction:'right',distance:15, times:3}, 150);
       }
       renderOwnerStories(res);
-   })
-  .fail(() => {
-     console.error("Ajax .get Error");
+    })
+      .fail(() => {
+        console.error("Ajax .get Error");
+      });
   });
-})
-$("a.toggleOwnerLeft").click(function(event) {
-  event.preventDefault();
-  if(offset <= 0) {
-    return $('.caro').effect( "bounce", {direction:'right',distance:15, times:3}, 150 );
+  $("a.toggleOwnerLeft").click(function(event) {
+    event.preventDefault();
+    if (offset <= 0) {
+      return $('.caro').effect("bounce", {direction:'right',distance:15, times:3}, 150);
     }
-  offset -= 3
-  $.getJSON(`/users/listup/${offset}`, function(res) {
-    renderOwnerStories(res);
-  })
-  .fail(() => {
-    console.error("Ajax .get Error");
+    offset -= 3;
+    $.getJSON(`/users/listup/${offset}`, function(res) {
+      renderOwnerStories(res);
+    })
+      .fail(() => {
+        console.error("Ajax .get Error");
+      });
   });
-})
-$(document).on('click', 'button.fa-arrow-up',submitLike)
+  $(document).on('click', 'button.fa-arrow-up',submitLike);
 
-$(document).on('click', 'button.fa-arrow-down',submitDislike)
+  $(document).on('click', 'button.fa-arrow-down',submitDislike);
 
 
-})
+});
 
 
 //
@@ -88,15 +88,15 @@ $(document).on('click', 'button.fa-arrow-down',submitDislike)
 //
 
 
-const storyStaysAtTop = function(){
+const storyStaysAtTop = function() {
   const $story = $('#myStory');
-  const $title = $('p.title')
-  $story.toggleClass('stationary', $(this).scrollTop() > $title.height())
+  const $title = $('p.title');
+  $story.toggleClass('stationary', $(this).scrollTop() > $title.height());
 };
 
 //CHANGES REPORT FLAG TO RED WHEN CLICKED
-const report = function(){
-  $(this).css('color', `red`)
+const report = function() {
+  $(this).css('color', `red`);
 };
 
 //MOVES WINDOW TO TOP OF PAGE
@@ -125,7 +125,7 @@ const addSlideButton = function(event) {
   event.preventDefault();
   $("html").animate({ scrollTop: 0}, 'fast');
   $(`.new-add`).slideToggle(250);
-  $('div.show').slideUp(150)
+  $('div.show').slideUp(150);
   $('#add-text').focus();
 };
 
@@ -149,7 +149,7 @@ const createAdditionElement = function(data) {
   </div>
 </div>
 </footer>
-</div>`
+</div>`;
   return contribution;
 };
 
@@ -166,34 +166,34 @@ const loadContributions = function(id) {
   $.getJSON(`/stories/additions/${id}`, function(res) {
     renderContributions(res);
   })
-  .fail(() => {
-    console.error("Ajax .get Error here?");
-  });
+    .fail(() => {
+      console.error("Ajax .get Error here?");
+    });
 };
 
 const submitNewAdd = function(event) {
   event.preventDefault();
-  const string = event.currentTarget.baseURI
+  const string = event.currentTarget.baseURI;
   let id = '';
-  for (let i = string.length - 1; i > 0; i--){
-    if(string[i] === "/"){
-      break
+  for (let i = string.length - 1; i > 0; i--) {
+    if (string[i] === "/") {
+      break;
     } else {
-      id += string[i]
+      id += string[i];
     }
   }
-  id = id.split('').reverse().join('')
+  id = id.split('').reverse().join('');
 
-    $.post(`/stories/additions/${id}`, $(this).serialize())
+  $.post(`/stories/additions/${id}`, $(this).serialize())
     .fail(() => {
       console.error("Ajax .post Error or here?");
     })
-      .then(() => {
-        loadContributions(id);
-        $('#add-text').val("");
-        $(`.new-add`).slideToggle(250);
+    .then(() => {
+      loadContributions(id);
+      $('#add-text').val("");
+      $(`.new-add`).slideToggle(250);
 
-      });
+    });
 };
 
 
@@ -206,31 +206,31 @@ const submitNewAdd = function(event) {
 //
 const createStoryElement = function(data, res) {
   const notFinished = `<a href="/stories/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
-  <div   class="storyInProgress alone">In Progress</div></a>`
+  <div   class="storyInProgress alone">In Progress</div></a>`;
 
   const ownerNotFinished = `<a href="/stories/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
   <article class="userBottom"><img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
-  <div   class="storyInProgress">In Progress</div></article></a>`
+  <div   class="storyInProgress">In Progress</div></article></a>`;
 
   const finished =
   `<a href="/stories/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
-  <div   class="storyFinished alone">Complete</div></a>`
+  <div   class="storyFinished alone">Complete</div></a>`;
 
   const ownerFinished = `<a href="/stories/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
   <article class="userBottom"><img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
-  <div   class="storyFinished">Complete</div></article></a>`
+  <div   class="storyFinished">Complete</div></article></a>`;
 
-  if(!data.completed) {
-      if (data.owner_id == res.user_id) {
+  if (!data.completed) {
+    if (data.owner_id == res.user_id) {
 
-       return ownerNotFinished
-      }
-      return notFinished;
+      return ownerNotFinished;
+    }
+    return notFinished;
   } else {
-  if (data.owner_id == res.user_id) {
-    return ownerFinished
-   }
-   return finished;
+    if (data.owner_id == res.user_id) {
+      return ownerFinished;
+    }
+    return finished;
   }
 };
 
@@ -241,44 +241,44 @@ const renderStories = function(res) {
     $('#story-container').append(createStoryElement(story,res.userID));
     $("html").animate({ scrollBottom: 100}, 'fast');
   }
-  }
+};
 
-  const createOwnerStoryElement = function(data, res) {
-    const notFinished = `<a href="/users/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
-    <div   class="storyInProgress alone">In Progress</div></a>`
+const createOwnerStoryElement = function(data, res) {
+  const notFinished = `<a href="/users/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
+    <div   class="storyInProgress alone">In Progress</div></a>`;
 
-    const ownerNotFinished = `<a href="/users/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
+  const ownerNotFinished = `<a href="/users/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
     <article class="userBottom"><img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
-    <div   class="storyInProgress">In Progress</div></article></a>`
+    <div   class="storyInProgress">In Progress</div></article></a>`;
 
-    const finished =
+  const finished =
     `<a href="/users/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
-    <div   class="storyFinished alone">Complete</div></a>`
+    <div   class="storyFinished alone">Complete</div></a>`;
 
-    const ownerFinished = `<a href="/users/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
+  const ownerFinished = `<a href="/users/${data.id}"  class="storyStamp"><div class="stampInfo"><div class="title">${data.title}</div><div class="desc">${data.content.substring(0, 150) + "..."}</div></div>
     <article class="userBottom"><img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
-    <div   class="storyFinished">Complete</div></article></a>`
+    <div   class="storyFinished">Complete</div></article></a>`;
 
-    if(!data.completed) {
-        if (data.owner_id == res.user_id) {
-         return ownerNotFinished
-        }
-        return notFinished;
-    } else {
+  if (!data.completed) {
     if (data.owner_id == res.user_id) {
-      return ownerFinished
-     }
-     return finished;
+      return ownerNotFinished;
     }
-  };
+    return notFinished;
+  } else {
+    if (data.owner_id == res.user_id) {
+      return ownerFinished;
+    }
+    return finished;
+  }
+};
 
-  const renderOwnerStories = function(res) {
-    $(`#story-container`).empty();
-    for (let story of res.stories) {
-      $('#story-container').append(createOwnerStoryElement(story,res.userID));
-      $("html").animate({ scrollBottom: 100}, 'fast');
-    }
-    }
+const renderOwnerStories = function(res) {
+  $(`#story-container`).empty();
+  for (let story of res.stories) {
+    $('#story-container').append(createOwnerStoryElement(story,res.userID));
+    $("html").animate({ scrollBottom: 100}, 'fast');
+  }
+};
 
 //
 //  END OF STORY LIST PAGE
@@ -290,7 +290,7 @@ const renderStories = function(res) {
 
 //FORM CURRENT RATING INTO HTML
 const createCounter = function(data) {
-  const counter = `<div id="vaiableCounter">${data.contribution[0].rating}</div>`
+  const counter = `<div id="vaiableCounter">${data.contribution[0].rating}</div>`;
   return counter;
 };
 
@@ -300,35 +300,35 @@ const loadRatingCounter = function(event) {
     $(`#${data.contribution[0].id}.ratingCounter`).empty();
     $(`#${data.contribution[0].id}.ratingCounter`).prepend(createCounter(data));
   })
-  .fail(() => {
-    console.error("Ajax .get Error here");
-  });
+    .fail(() => {
+      console.error("Ajax .get Error here");
+    });
 };
 
 //POST TO INCREASE CONTRIBUTION RATING BY 1
 const submitLike = function(event) {
   event.preventDefault();
-  const id = event.currentTarget.id
+  const id = event.currentTarget.id;
   $.post(`/users/like/${id}`, $(this).serialize())
-  .fail(() => {
-    console.error("Ajax .post Error");
-  })
-  .then(() => {
-    loadRatingCounter(id);
-  });
-}
+    .fail(() => {
+      console.error("Ajax .post Error");
+    })
+    .then(() => {
+      loadRatingCounter(id);
+    });
+};
 //POST TO REDUCT CONTRIBUTION RATING BY 1
 const submitDislike = function(event) {
   event.preventDefault();
-  const id = event.currentTarget.id
+  const id = event.currentTarget.id;
   $.post(`/users/dislike/${id}`, $(this).serialize())
-  .fail(() => {
-    console.error("Ajax .post Error here");
-  })
-  .then(() => {
-    loadRatingCounter(id);
-  });
-}
+    .fail(() => {
+      console.error("Ajax .post Error here");
+    })
+    .then(() => {
+      loadRatingCounter(id);
+    });
+};
 
 //
 // END OF LIKE/DISLIKE FUNCTION

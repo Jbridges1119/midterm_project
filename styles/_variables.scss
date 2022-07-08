@@ -6,24 +6,24 @@
  $boxShadow: rgba(102, 95, 82, 0.2);
  $font-family: 'Nunito', sans-serif;
 
-/*Available font weights
+ /*Available font weights
 300 - light
 400 - regular
 600 - semibold
 700 - bold
 */
 
- @mixin boxHover(){
-  transition-duration: .2s;
-  transition-timing-function: ease-in-out;
-  box-shadow: 0 4px 6px rgba(102, 95, 82, 0.3);
-  transform: translateY(-2px);
+ @mixin boxHover() {
+   transition-duration: .2s;
+   transition-timing-function: ease-in-out;
+   box-shadow: 0 4px 6px rgba(102, 95, 82, 0.3);
+   transform: translateY(-2px);
  }
 
-@mixin boxFocus(){
-  transition-duration: .05s;
-  border: 2px solid;
-  border-color: $highlightColour;
-  box-shadow: 0 4px 6px rgba(102, 95, 82, 0.3);
-  transform: translateY(-2px);
-}
+ @mixin boxFocus() {
+   transition-duration: .05s;
+   border: 2px solid;
+   border-color: $highlightColour;
+   box-shadow: 0 4px 6px rgba(102, 95, 82, 0.3);
+   transform: translateY(-2px);
+ }

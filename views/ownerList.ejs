@@ -37,29 +37,51 @@
   <!--  Nav Bar  -->
   <%- include('partials/_header') %>
 
-      <h2>Your Stories</h2>
-      <main class="list">
+    <h2>Your Stories</h2>
+    <main class="list">
       <a href="/stories/<%= 0%>" class="toggleOwnerLeft"><i class="fa-solid fa-angles-left arrows"></i></a>
       <div class="caro" id="story-container">
         <% for(let key of stories) { %>
           <%if (key.completed) {%>
-        <a href="/stories/<%= key['id']%>"  class="storyStamp"><div class="stampInfo"><div class="title"><%= key['title'] %></div><div class="desc"><%=key.content.substring(0, 160) + "..." %></div></div>
-        <% if(key.owner_id == userID.user_id) {%>
-          <article class="userBottom"><img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
-        <div   class="storyFinished">Complete</div></article></a>
-        <% } else {%>
-          <div   class="storyFinished alone">Complete</div></a>
-          <% } %>
-        <% } else {%>
-        <a href="/stories/<%= key['id']%>"  class="storyStamp"><div class="stampInfo"><div class="title"><%= key['title'] %></div><div class="desc"><%=key.content.substring(0, 160) + "..." %></div></div>
-          <% if(key.owner_id == userID.user_id) {%>
-            <article class="userBottom"><img class="imgCarousel" src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
-          <div   class="storyFinished">In Progress</div></article></a>
-          <% } else {%>
-            <div   class="storyFinished alone">In Progress</div></a>
-            <% } %>
-        <% } %>
-        <% } %>
+            <a href="/stories/<%= key['id']%>" class="storyStamp">
+              <div class="stampInfo">
+                <div class="title">
+                  <%= key['title'] %>
+                </div>
+                <div class="desc">
+                  <%=key.content.substring(0, 160) + "..." %>
+                </div>
+              </div>
+              <% if(key.owner_id==userID.user_id) {%>
+                <article class="userBottom"><img class="imgCarousel"
+                    src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
+                  <div class="storyFinished">Complete</div>
+                </article>
+            </a>
+            <% } else {%>
+              <div class="storyFinished alone">Complete</div></a>
+              <% } %>
+                <% } else {%>
+                  <a href="/stories/<%= key['id']%>" class="storyStamp">
+                    <div class="stampInfo">
+                      <div class="title">
+                        <%= key['title'] %>
+                      </div>
+                      <div class="desc">
+                        <%=key.content.substring(0, 160) + "..." %>
+                      </div>
+                    </div>
+                    <% if(key.owner_id==userID.user_id) {%>
+                      <article class="userBottom"><img class="imgCarousel"
+                          src="https://www.w3schools.com/howto/img_avatar2.png" alt="Avatar">
+                        <div class="storyFinished">In Progress</div>
+                      </article>
+                  </a>
+                  <% } else {%>
+                    <div class="storyFinished alone">In Progress</div></a>
+                    <% } %>
+                      <% } %>
+                        <% } %>
       </div>
       <a href="/stories/listdown/<%= 0%>" class="toggleOwnerRight"><i class="fa-solid fa-angles-right arrows"></i></a>
     </main>
@@ -70,4 +92,5 @@
     </div>
 </body>
 <!-- <%- include('partials/_footer') %> -->
+
 </html>

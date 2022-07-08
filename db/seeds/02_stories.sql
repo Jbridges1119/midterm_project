@@ -3,7 +3,7 @@ INSERT INTO stories (owner_id, creation_time, title, content, completed)
 VALUES
 
 ( 1, '2022-02-02',
-'Typewriter butcher', 'Truffaut cliche gochujang letterpress vexillologist meggings crucifix neutra street art. Kitsch chia selfies lumbersexual church-key enamel pin unicorn craft beer.', FALSE),
+'Typewriter butcher', 'Truffaut cliche gochujang letterpress vexillologist meggings crucifix neutra street art. Kitsch chia selfies lumbersexual church-key enamel pin unicorn craft beer.', TRUE),
 ( 1, '2021-12-24',
 'Artisan unicorn', 'Authentic tote bag freegan lumbersexual cold-pressed. Skateboard copper mug direct trade vegan actually knausgaard bespoke pug swag DSA kickstarter schlitz green juice.', TRUE),
 

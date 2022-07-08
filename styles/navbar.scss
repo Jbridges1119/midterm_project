@@ -24,23 +24,26 @@ nav {
   font-size: 2rem;
 
   .nav-links {
-    font-size:1.7rem;
+    font-size: 1.7rem;
     display: flex;
     flex-direction: row;
     align-items: center;
+
     .nav-name {
-      display:flex;
+      display: flex;
 
       font-size: 3rem;
       font-weight: 700;
-      div.the{
+
+      div.the {
         text-decoration: underline;
-        padding-right:10px;
+        padding-right: 10px;
         font-size: 1.4rem;
         font-weight: 400;
         font-style: italic;
       }
     }
+
     a {
       display: flex;
       justify-content: center;
@@ -83,6 +86,7 @@ nav {
       font-size: 1.4rem;
       font-weight: 600;
     }
+
     img {
       margin-left: 1rem;
       border-radius: 50%;

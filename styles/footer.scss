@@ -6,17 +6,16 @@ footer.ending {
   height: 40px;
   width: 100%;
   background-color: $textColor;
-  color:$background-colour;
-  display:flex;
+  color: $background-colour;
+  display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
 
 
   z-index: 5;
+
   p {
     margin-block: 0px;
   }
 }
-
-
